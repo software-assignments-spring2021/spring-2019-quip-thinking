@@ -41,7 +41,7 @@ module.exports = function (io) {
 			io.to(socket.id).emit('create-private-room', {
 				roomCode: rand,
 				roomName: game.roomName,
-				players: [msg.playrName]
+				players: [msg.playerName]
 			})
       			cb(null, 'Done');
 		});
