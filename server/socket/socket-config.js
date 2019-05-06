@@ -65,7 +65,7 @@ module.exports = function (io) {
                                 io.to(ids[i]).emit('join-private-room', { msg: 'success', players: players, roomName: currentPrivateRooms[roomCode].roomName});
                             }
 
-                        //io.to(socket.id).emit('join-private-room', { msg: 'success', names: players, roomName: currentPrivateRooms[roomCode].roomName});
+                        io.to(socket.id).emit('join-private-room', { msg: 'success', names: players, roomName: currentPrivateRooms[roomCode].roomName});
 		/*
             socket.broadcast.emit("join-private-room", {
               msg: "success",
