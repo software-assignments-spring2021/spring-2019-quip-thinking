@@ -1,22 +1,16 @@
-import React from 'react';
-import './game.css';
-import { Nav, Row, Col, Button, Jumbotron } from 'react-bootstrap';
+import React from "react";
+import "./game.css";
+import { Nav, Row, Col, Button, Jumbotron } from "react-bootstrap";
 import Header from "../../components/header";
 
 const Game = () => {
-
-
-
-
   return(
 <>
   <div className="create">
   <Header/>
   <Jumbotron>
     <h1>Round #</h1>
-    <p>
-      SAMPLE PROMPT HERE
-    </p>
+    <p>SAMPLE PROMPT HERE</p>
   </Jumbotron>
   <Row>
     <Col>
@@ -30,9 +24,7 @@ const Game = () => {
   </Row>
   </div>
 </>
-
   )
-
 }
 
 class Player{
