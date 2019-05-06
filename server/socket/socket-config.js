@@ -16,7 +16,8 @@ module.exports = function (io) {
 
 	const currentPrivateRooms = {};
 	const min = 3;
-	var rounds = 3;
+	const rounds = 3;
+	const roundStr = 'round_';
 
 	// a room is of the form
 	// code: { Game }
@@ -98,24 +99,30 @@ module.exports = function (io) {
 							for (let i = 0; i < rounds; i++) {
 								const r = i + 1;
 								const pairs = util.getPairs(currPlayers, r);
-								console.log("PAIRS ", currPlayers, pairs);
+							//	console.log("PAIRS ", currPlayers, pairs);
 
 								const limit = (i * num) + num;
 								const start = i* num;
 								//let k = 0;
 								//console.log("NUM", num);
 								//console.log("LIMIT and START", limit, start);
-								currentPrivateRooms[msg.code]['round_'+r] = {};
+								currentPrivateRooms[msg.code][roundStr+r] = {};
 								for (let j = start, k = 0; j < limit; j++, k++) {
-									currentPrivateRooms[msg.code]['round_'+r][prompts[j]] = {};
+									currentPrivateRooms[msg.code][roundStr+r][prompts[j]] = {};
 								
 									//initialize pairs on this prompt with empty quote									
 									
 									//assign each pair a prompt
-									currentPrivateRooms[msg.code]['round_'+r][prompts[j]][pairs[k][0]] = '';
-									currentPrivateRooms[msg.code]['round_'+r][prompts[j]][pairs[k][1]] = '';
+									const p1 = (currentPrivateRooms[msg.code]).getPlayerName(pairs[k][0]);
+									const p2 = (currentPrivateRooms[msg.code]).getPlayerName(pairs[k][1]);
 
-									console.log("PROMPT ", prompts[j], currentPrivateRooms[msg.code]['round_'+r][prompts[j]]);
+									currentPrivateRooms[msg.code][roundStr+r][prompts[j]][pairs[k][0]] = {};
+									currentPrivateRooms[msg.code][roundStr+r][prompts[j]][pairs[k][0]][p1] ='';
+
+									currentPrivateRooms[msg.code][roundStr+r][prompts[j]][pairs[k][1]] = {};
+									currentPrivateRooms[msg.code][roundStr+r][prompts[j]][pairs[k][1]][p2] = '';
+
+									console.log("PROMPT ", prompts[j], currentPrivateRooms[msg.code][roundStr+r][prompts[j]]);
 
 									//also store the prompt in the player object, under prompts
 									(currentPrivateRooms[msg.code].players[pairs[k][0]]).addPrompt(prompts[j]);
@@ -131,7 +138,7 @@ module.exports = function (io) {
 								console.log('here in the for ', i);
 
 								const qs = (currentPrivateRooms[msg.code].players[currPlayers[i]]).getPrompts();
-								console.log("SENFING PROMPTS", qs);
+							//	console.log("SENFING PROMPTS", qs);
 								io.to(currPlayers[i]).emit('start-game', { start: 'true', prompts: qs});
 							}
 					}).catch(err => console.log('ERROR resolving promise ', err));
@@ -155,14 +162,16 @@ module.exports = function (io) {
 				const roomCode = msg.roomCode;
 				const prmpt = msg.prmpt;
 				const ans = msg.ans;
-				const round = 'round_' + msg.round;
+				const round = roundStr + msg.round;
 	
 				if (currentPrivateRooms[roomCode]) {
 					if (currentPrivateRooms[roomCode][round]) {
 							console.log('Here is the code and round', roomCode, round, currentPrivateRooms[roomCode]);
  
 							if (currentPrivateRooms[roomCode][round][prmpt]) {
-								currentPrivateRooms[roomCode][round][prmpt][socket.id] = ans;
+								const p = (currentPrivateRooms[roomCode]).getPlayerName(socket.id);
+
+								currentPrivateRooms[roomCode][round][prmpt][socket.id][p] = ans;
 								io.to(socket.id).emit('submit-answer', 'success');
 							} else {
 								io.to(socket.id).emit('submit-answer', 'fail1');
@@ -173,6 +182,54 @@ module.exports = function (io) {
 				} else {	
 					io.to(socket.id).emit('submit-answer', 'fail3');
 				}
+
+			cb(null, 'Done');
+		});
+
+	
+		socket.on('end-round', function(msg, cb) {
+			cb = cb || function() {};
+
+			const roomCode = msg.roomCode;
+			const round = roundStr + msg.round;
+
+			const prompts = currentPrivateRooms[roomCode][round];
+			if (prompts) {
+				io.to(socket.id).emit('start-vote', { round: round, prompts:prompts });
+			} else {
+				io.to(socket.id).emit('start-vote', { round: round, prompts: null});
+			}
+
+			cb(null, 'Done');
+		});
+
+		socket.on('end-vote', function(msg, cb) {
+			cb = cb || function() {};
+
+			const roomCode = msg.roomCode;
+			const playerId = msg.player;
+
+			currentPrivateRooms[roomCode].updateScore(playerId);
+
+			const players = Array.from(new Set(Object.keys(currentPrivateRooms[roomCode].players)));
+			
+			const scores = {};
+
+			for (let i = 0; i < players.length; i++) {
+				console.log('here in the for ', i);
+
+				const p = currentPrivateRooms[roomCode].players[players[i]];
+				const pName = p.getName();
+				const pScore = p.getScore();
+
+				scores[pName] = pScore;
+				
+			//	console.log("SENFING PROMPTS", qs);
+			}
+
+			for (let i = 0; i < players.length; i++) {
+				io.to(players[i]).emit('end-vote', { start: 'true', scores: scores});
+			}
 
 			cb(null, 'Done');
 		});
@@ -204,12 +261,12 @@ module.exports = function (io) {
 			new Prompt({
 				question: prompt
 			}).save((err, promptt) => {
-	if(err) { /*failed to save, server error */
-		console.log("error")
-	} else { /* saved successfully */
-		console.log('success')
-	}
-});
+					if(err) { /*failed to save, server error */
+						console.log("error")
+					} else { /* saved successfully */
+						console.log('success')
+					}
+			});
 
 		});
 
