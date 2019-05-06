@@ -52,7 +52,8 @@
   - (to do)
 
 - **What Need Does This Fill**
-  - (to do)
+  - The original game comes in a package alongside other Jackbox games, which some people don't want to pay for.
+  - Quip Thinking accommodates playing a quick game by yourself by joining a public room as well as the traditional means of playing with a group of friends.
 
 - **User Observation**
   - We have had people in the target age range play our game from start to finish.
@@ -63,16 +64,18 @@
 ## The System (Disha)
 
 - **Software**
-  - (to do)
+  - HTML / CSS
+  - JavaScript
+  - Python (Web Scraping)
+  - MongoDB, Express, React, Node.js (MERN Stack)
+  - Bootstrap / jQuery
+  - Socket.io
 
 - **Hardware**
-  - (to do)
+  - Standard Mac / PC Computers
 
-- **Libraries**
-  - (to do)
-
-- **Frameworks**
-  - (to do)
+- **Most Time-Consuming Aspect**
+  - Connecting the Front End to the Back End
 
 ## Challenges (Richard)
 
@@ -104,8 +107,8 @@
 
 - **Beyond the Classroom**
   - This project could be useful outside of class as it provides entertainment and connects people to one another.
-  - 
+  - Many people are unable to play the original game since they lack people to play with.
 
 - **Continued Work**
   - There may be some legal ramifications preventing us from actually developing and releasing the game.
-  -
+  - Unexpected difficulties arose with interactive game design.
