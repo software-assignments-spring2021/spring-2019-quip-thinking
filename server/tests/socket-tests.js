@@ -23,29 +23,14 @@ describe('Socket tests', function() {
 		done();
 	});
 
-	it("should receive connection", function(done) {
-		const client = io.connect(url, options);
-
-		client.once('connect', function() {
-			client.once('test', function(msg) {
-				msg.should.equal("received");
-				client.disconnect();
-				done();
-			});
-
-			client.emit('test', " ");	
-		});
-	
-	});
-
 	it("should return a random for the room code", function(done) {
 		const client = io.connect(url, options);
 		
 		client.once('connect', function() {
 		
-			client.once('create-private-room', function(rand) {
-				trand = rand;
-				rand.should.be.a('number');
+			client.once('create-private-room', function(obj) {
+				trand = obj.roomCode;
+				(obj.roomCode).should.be.a('number');
 				client.disconnect();
 				done();
 			});
@@ -62,7 +47,7 @@ describe('Socket tests', function() {
 		client.once('connect', function() {
 			
 			client.once('join-private-room', function(msg) {
-				(msg.msg).should.equal('true');
+				(msg.msg).should.equal('success');
 				client.disconnect();
 				done();
 			});
@@ -93,9 +78,9 @@ describe('Socket tests', function() {
 	it('should return array to clients when game starts', function(done) {
 		const client = io.connect(url, options);
 
-		client.on('connect', function() {
-			client.on('join-private-room', function(msg) {
-				(msg.msg).should.equal('true');
+		client.once('connect', function() {
+			client.once('join-private-room', function(msg) {
+				(msg.msg).should.equal('success');
 //				client2.disconnect();
 				//done();
 			});
@@ -105,29 +90,29 @@ describe('Socket tests', function() {
 			const client2 = io.connect(url, options);
 			const client3 = io.connect(url, options);
 
-			client2.on('connect', function() {
-					client2.on('join-private-room', function(msg) {
-						(msg.msg).should.equal('true');
+			client2.once('connect', function() {
+					client2.once('join-private-room', function(msg) {
+						(msg.msg).should.equal('success');
 //						client2.disconnect();
 						//done();
 					});
-					client2.on('start-game', function(msg) {
+					client2.once('start-game', function(msg) {
 						(msg.prompts).should.be.an('array');
-						//client.disconnect();
+						client2.disconnect();
 						//done();
 					});
 				client2.emit('join-private-room', { code: trand, name: 'client2' });	
 			});
 	
-			client3.on('connect', function() {
-					client3.on('join-private-room', function(msg) {
-						(msg.msg).should.equal('true');
+			client3.once('connect', function() {
+					client3.once('join-private-room', function(msg) {
+						(msg.msg).should.equal('success');
 //						client3.disconnect();
 //						done();
 					});
-					client3.on('start-game', function(msg) {
+					client3.once('start-game', function(msg) {
 						(msg.prompts).should.be.an('array');
-//						client.disconnect();
+						client3.disconnect();
 //						done();
 					});
 				client3.emit('join-private-room', { code: trand, name: 'client3' });
@@ -136,8 +121,16 @@ describe('Socket tests', function() {
 
 			client.on('start-game', function(msg) {
 				(msg.prompts).should.be.an('array');
-				client.disconnect();
-				done();
+//				client.disconnect();
+//				done();
+				client.on('submit-answer', function(msg2) {
+					console.log('submit-answer', msg2, msg, msg.prompts[0]);
+					msg2.should.equal('success');
+					client.disconnect();
+					done();
+				});
+
+				client.emit('submit-answer', {round:1, roomCode:trand, prmpt: msg.prompts[1], ans: 'fowl'});
 			});
 
 //			client.emit('start-game', { code: trand });
@@ -145,6 +138,7 @@ describe('Socket tests', function() {
 		});
 	
 	});
+	
 
 	it('should remove code when game is done', function(done) {
 		const client = io.connect(url, options);
@@ -180,5 +174,5 @@ describe('Socket tests', function() {
 			client.emit('join-private-room', { code: trand, name:'' });
 		});
 
-	}); 
+	});
 });
