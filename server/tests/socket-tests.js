@@ -112,7 +112,7 @@ describe('Socket tests', function() {
 					});
 					client3.once('start-game', function(msg) {
 						(msg.prompts).should.be.an('array');
-						client3.disconnect();
+						//client3.disconnect();
 //						done();
 					});
 				client3.emit('join-private-room', { code: trand, name: 'client3' });
@@ -126,11 +126,29 @@ describe('Socket tests', function() {
 				client.on('submit-answer', function(msg2) {
 					console.log('submit-answer', msg2, msg, msg.prompts[0]);
 					msg2.should.equal('success');
-					client.disconnect();
-					done();
+					//client.disconnect();
+					/*client.on('start-vote', function(msg2) {
+						console.log('start vote -answer', msg2, msg2.prompts);
+						msg2.should.be.an('object');
+						client.disconnect();
+						//done();
+					}); */
+					//done();
+					client.on('end-vote', function(m) {
+						console.log('end-vote', m.scores);
+						m.scores.should.be.an('object');
+						client.disconnect();
+						done();
+		
+					});	
+					client.emit('end-round', {round:1, roomCode:trand});
+					client.emit('end-vote', {roomCode:trand, player: client.id});
 				});
 
+
+				client.emit('submit-answer', {round:1, roomCode:trand, prmpt: msg.prompts[0], ans: 'fowl'});
 				client.emit('submit-answer', {round:1, roomCode:trand, prmpt: msg.prompts[1], ans: 'fowl'});
+
 			});
 
 //			client.emit('start-game', { code: trand });
