@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:1337'
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000'
 const socket = io(API_URL);
 
 export const createPrivateRoom = (roomName, playerName, cb = () => {}) => {
@@ -66,5 +66,18 @@ export const answersSuccessful = (cb = () => {}) => {
     socket.on('submit-answer', msg => {
         cb(msg)
     })
+}
+
+
+export const startTimer = ( cb = () => {}) => {
+    socket.emit('reset', {})
+
+}
+
+export const updateTimer = ( cb = () => {}) => {
+    socket.on('timer',msg => {
+      console.log(msg.countdown);
+        cb(msg);
+  })
 }
 export default socket

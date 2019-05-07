@@ -2,7 +2,8 @@ import React from "react";
 // import { Modal, Form, Button } from "react-bootstrap";
 import "./game.css";
 //import io from 'socket.io-client'
-import socket, { answerPrompt, answersSuccessful } from '../../utils/api'
+
+import socket, { answerPrompt , answersSuccessful, startTimer, updateTimer} from '../../utils/api'
 
 export class AnswerPrompts extends React.Component{
   constructor(props){
@@ -20,6 +21,15 @@ export class AnswerPrompts extends React.Component{
     };
     this.answersSent.bind(this);
     console.log(this.props.prompts)
+
+
+    updateTimer(res=>{
+     let times = res.countdown;
+     console.log(times, 'yay');
+     this.setState({time: times});
+   });
+
+
   }
 
   fieldoneChange(e){
@@ -60,12 +70,13 @@ export class AnswerPrompts extends React.Component{
     }
     return false;
   }
-  
+
   answersSent(){
     this.setState({finished: true});
   }
 
   componentDidMount(){
+    startTimer();
     const roomCode=this.props.roomCode;
     const round=this.props.round;
     answersSuccessful(res => {
@@ -97,6 +108,7 @@ export class AnswerPrompts extends React.Component{
     return(
       <>
         <div className="create">
+        {this.state.time}
         { this.state.finished ?  '': this.showPrompt(this.state.accumulator)}
         </div>
       </>
