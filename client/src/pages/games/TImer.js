@@ -1,32 +1,64 @@
 import React from "react";
 
-const timer = () => {
-	return(
-			<div className="timer">
+// var time = 90;
 
-				<p> Time Left: </p>			
+// var timer = setInterval(function() {
+// 	// document.getElementById("countdown").innerHTML = time + " seconds";
+// 	time -= 1;
 
-				<Row>
+// 	if (time <= 0) {
+// 		clearInterval(timer);
 
-				<Col>
+// 		return;
+		
+// 		// document.getElementById("countdown").innerHTML = "time's up!";
+// 	}
 
-					<button onclick="setTimeout(myFunction, 90000)">timer</button>
+// 	document.getElementById("timer").innerHTML = time + " seconds";
+// }, 1000);
 
-					<script>
-						function myFunction() {
-							alert("time over");
-						}
-					</script>
+var count = 90;
 
-				</Col>
+var counter = setInterval(timer, 1000);
 
-				</Row>
+function timer() {
+	count -= 1;
 
-			</div>
-	)
+	if (count <= 0) {
+		clearInterval(counter);
+		return;
+	}
+
+	// document.getElementById("timer").innerHTML=count + " secs";
 }
 
-export default timer;
+// const timer = () => {
+// 	return(
+// 			<div className="timer">
+
+// 				<p> Time Left: </p>			
+
+// 				<Row>
+
+// 				<Col>
+
+// 					<button onclick="setTimeout(myFunction, 90000)">timer</button>
+
+// 					<script>
+// 						function myFunction() {
+// 							alert("time over");
+// 						}
+// 					</script>
+
+// 				</Col>
+
+// 				</Row>
+
+// 			</div>
+// 	)
+// }
+
+// export default timer;
 
 // notes: https://robdodson.me/building-a-countdown-timer-with-socket-dot-io/
 
