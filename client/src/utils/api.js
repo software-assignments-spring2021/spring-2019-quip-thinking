@@ -38,4 +38,15 @@ export const subscribeToJoins = (cb = () => {}) => {
     })
 }
 
+export const sendVote = (vote, cb = () => {}) => {
+    socket.emit('vote', {vote});
+}
+
+export const getInfo = (roomCode, cb = () => {}) => {
+    socket.on('end-round', ({prompt, quip1, quip2}) => {
+        cb(prompt, quip1, quip2)
+    })
+}
+
+
 export default socket
