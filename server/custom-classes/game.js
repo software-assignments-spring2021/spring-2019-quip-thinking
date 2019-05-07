@@ -71,6 +71,10 @@ class Game {
 		(this.players[socketId]).updateScore(point);
 	}
 
+	getPlayerNames() {
+		return Object.keys(this.players).map(key => this.players[key].name);
+	}
+
 	getNumberofPlayers() {
 		return Object.keys(this.players).length;
 	}
