@@ -206,6 +206,7 @@ module.exports = function (io) {
 		});
 
 		socket.on('start-vote', function(msg, cb) {
+
 			cb = cb || function() {};
 
 			const roomCode = msg.roomCode;
@@ -242,7 +243,9 @@ module.exports = function (io) {
 
 				scores[pName] = pScore;
 
+
 			//	console.log("SENDING PROMPTS", qs);
+
 			}
 
 			for (let i = 0; i < players.length; i++) {
@@ -287,6 +290,25 @@ module.exports = function (io) {
 			});
 
 		});
+
+		var countdown = 10;
+		setInterval(function() {
+		  countdown--;
+			if(countdown > 0 ){
+				console.log(countdown);
+				socket.emit('timer', { countdown: countdown });
+			}
+			else{
+				console.log('stop');
+			}
+
+		}, 1000);
+
+		socket.on('reset', function (data) {
+		    countdown = 100;
+		    socket.emit('timer', { countdown: countdown });
+				console.log('reset');
+		  });
 
 
 	});
