@@ -28,23 +28,7 @@ class WaitingPrivate extends React.Component{
   
   startPrivateGame(){
     const roomCode = this.props.roomCode;
-    // const round = this.state.round;
     startGame(roomCode, res => {
-      // const {start, prompts} = res
-      // if(start === "true"){
-      //   console.log("hitme")
-      //   this.props.history.push({
-      //     pathname: "/answer/private",
-      //     state: {
-      //       roomCode,
-      //       prompts,
-      //       round
-      //     }
-      //   })
-      // }
-      // else{
-      //   this.setState({errorText: "You either don't have enough players or are sending an incorrect code. Please try again."});
-      // }
     })
   }
 
@@ -62,7 +46,6 @@ class WaitingPrivate extends React.Component{
       const round=this.state.round;
       if(start === "true"){
         this.receivedPrompts(prompts);
-        // console.log("hitme")
         this.props.history.push({
           pathname: "/answer/private",
           state: {

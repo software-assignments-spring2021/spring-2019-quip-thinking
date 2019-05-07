@@ -50,13 +50,9 @@ export const getInfo = (roomCode, cb = () => {}) => {
 
 export const startGame = (roomCode, cb = () => {}) => {
     socket.emit('start-game', { code: roomCode })
-    socket.on('start-game', output => {
-        cb(output)
-    })
 }
 
 export const getPrompts = (roomCode, cb = () => {}) => {
-    socket.emit('start-game', {roomCode})
     socket.on('start-game', msg => {
         cb(msg)
     })
