@@ -9,7 +9,7 @@ class WaitingPrivate extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      players: [],
+      players: [this.props.playerName],
       errorText: "",
       prompts: [],
       round: 1
@@ -25,7 +25,7 @@ class WaitingPrivate extends React.Component{
   receivedPlayers(players){
     this.setState({players: players})
   }
-  
+
   startPrivateGame(){
     const roomCode = this.props.roomCode;
     startGame(roomCode, res => {
@@ -66,9 +66,9 @@ class WaitingPrivate extends React.Component{
     socket.off('start-game')
   }
 
-  render(){
+  render() {
     const { players } = this.state
-    return(
+    return (
       <>
         <div id="waitingPrivate">
           <div id="heading">

@@ -48,7 +48,8 @@ class Game {
 		this.code = code;
 		this.players = {};
 		this.max = max || 8; //for now 8 is default, can change later
-		this.roomName = ''
+		this.roomName = '';
+		this.point = 100;
 	}
 
 	addPlayer(socketId, name) {

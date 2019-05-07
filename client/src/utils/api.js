@@ -38,23 +38,23 @@ export const subscribeToJoins = (cb = () => {}) => {
     })
 }
 
-export const sendVote = (vote, cb = () => {}) => {
-    socket.emit('vote', {vote});
+export const sendVote = (id, code, quip,  cb = () => {}) => {
+    socket.emit('end-vote', {id, code, quip});
 }
 
 export const getInfo = (roomCode, cb = () => {}) => {
-    socket.on('end-round', ({prompt, quip1, quip2}) => {
-        cb(prompt, quip1, quip2)
+    socket.on('start-vote', ({prompts}) => {
+        cb(prompts);
     })
 }
 
 export const startGame = (roomCode, cb = () => {}) => {
-    socket.emit('start-game', { code: roomCode })
+    socket.emit('start-game', { code: roomCode });
 }
 
 export const getPrompts = (roomCode, cb = () => {}) => {
     socket.on('start-game', msg => {
-        cb(msg)
+        cb(msg);
     })
 }
 
@@ -63,7 +63,7 @@ export const answerPrompt = ( round, roomcode, answer, prompt, cb = () => {}) =>
     socket.emit('submit-answer', {round: round, roomCode: roomcode, ans: answer , prmpt: prompt})
     socket.on('submit-answer', msg => {
         if(msg=='success'){
-          
+
         }
     })
 }
