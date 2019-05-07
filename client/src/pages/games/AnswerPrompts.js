@@ -9,7 +9,7 @@ export class AnswerPrompts extends React.Component{
     super(props);
     this.state = {
       players: [],
-      prompts: ['question b ', 'question a'],
+      prompts: ['question a ', 'question b'],
       accumulator: 0,
       answer: [],
       finished: false,
@@ -33,9 +33,18 @@ export class AnswerPrompts extends React.Component{
 
   answerPrompt(e){
     e.preventDefault();
+    let one = this.props.roomCode;
+    let two = this.props.prompts;
+    let three = this.props.round;
+    console.log(one, ' this is room code');
+    console.log(two.length, 'this is prompt length ');
+    console.log(three, ' this is three');
+
+
     this.setState({finished: true});
-    console.log(this.state.finished);
-    answerPrompt(this.props.round, this.roomcode, this.state.answer, this.state.prompt);
+    //console.log(this.state.finished);
+    answerPrompt(this.props.round, this.props.roomCode, this.state.answerOne, this.props.prompts[(this.props.round*2)-2]);
+    answerPrompt(this.props.round, this.props.roomCode, this.state.answerTwo, this.props.prompts[(this.props.round*2)-1]);
     console.log("yay");
 
 
@@ -44,10 +53,10 @@ export class AnswerPrompts extends React.Component{
   showPrompt(number){
     return(
       <div>
-        {this.props.prompts[(this.state.round*2)-1]}
+        {this.props.prompts[(this.state.round*2)-2]}
         <form onSubmit={this.answerPrompt.bind(this)}>
         <input name="answer" type="text" onChange = {this.fieldoneChange.bind(this)}  />
-        {this.props.prompts[this.state.round*2-2]}
+        {this.props.prompts[this.state.round*2-1]}
         <input name="answer" type="text" onChange = {this.fieldtwoChange.bind(this)} />
 
 
