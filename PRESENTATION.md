@@ -1,27 +1,27 @@
 # Final Presentation
 
-## Team Members 
+## Team Members
 
 1. **Disha Gupta**
    - *Year* - Senior
    - *Interests* - Data Science
-   - *Prior Experience* - took AIT
+   - *Prior Experience* - Applied Internet Technology
 2. **Richard Jin**
    - *Year* - Senior
    - *Interests* - Front End Development
-   - *Prior Experience* - took AIT
+   - *Prior Experience* - Applied Internet Technology
 3. **Larry Liu**
    - *Year* - Junior
    - *Interests* - Full Stack Development
-   - *Prior Experience* - internship experience
+   - *Prior Experience* - Internship Experience
 4. **Rebecca Shi**
    - *Year* - Senior
    - *Interests* - UI/UX
-   - *Prior Experience* - took AIT
+   - *Prior Experience* - Applied Internet Technology
 5. **Jody Simpson**
    - *Year* - Senior
    - *Interests* - Back End Development
-   - *Prior Experience* - took AIT and internship experience 
+   - *Prior Experience* - Applied Internet Technology and Internship Experience
 
 ## Team Roles (Jody)
 
@@ -34,21 +34,18 @@
 
 ## Project Summary (Larry)
 
-- **Quip Thinking**
-  - Quip Thinking is a game based off of the popular game called Quiplash, originally made by the developers at Jackbox Games.
-
+**Quip Thinking**
 - **Elevator Pitch**
-  - Quip Thinking is a game based off of the popular game called Quiplash, originally made by the developers at Jackbox Games.
-  - The original game involves two people answering witty prompts and their friends voting on which answer they liked the most. 
-  - Quip Thinking puts a new spin on the game to give users a fresh take.
-  - We give users the ability to play with anyone, from their friends to strangers, from the comfort of their computers or phones.
-  - They can join a public room or make their own private room with a room code to play with their friends.
-  - Users can also add their own prompts (first vetted by us!) to our database of prompts.
+  - Quip Thinking is a game based off of Quiplash, a popular game originally developed at Jackbox Games.
+  - The original involves people answering witty prompts and their friends voting on the better answer.
+  - Quip Thinking allows users to play with anyone from the comfort of their computers or phones.
+  - Players can join a public room or make their own private room with a room code to play with their friends.
+  - Users can also submit their own prompts (first vetted by us) to our database of prompts.
 
 ## Users (Rebecca)
 
 - **Audience**
-  - We made this game for people of all ages. 
+  - We made this game for people of all ages.
   - It can be played and enjoyed by people everywhere.
 
 - **Tendencies and Limitations**
@@ -106,7 +103,9 @@
 ## The Future (Larry)
 
 - **Beyond the Classroom**
-  - (to do)
+  - This project could be useful outside of class as it provides entertainment and connects people to one another.
+  - 
 
 - **Continued Work**
-  - (to do)
+  - There may be some legal ramifications preventing us from actually developing and releasing the game.
+  -
