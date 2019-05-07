@@ -9,7 +9,8 @@ class WaitingPrivate extends React.Component{
     super(props);
     this.state = {
       players: [],
-      errorText: ""
+      errorText: "",
+      prompts: []
     }
     this.receivedPlayers.bind(this);
     subscribeToJoins((err, players) => {
@@ -21,24 +22,14 @@ class WaitingPrivate extends React.Component{
   receivedPlayers(players){
     this.setState({players: players})
   }
-
-  // receivedPrompts(prompts){
-  //   this.setState({prompts: prompts})
-  // }
+  
   startPrivateGame(){
     startGame(this.props.roomCode, res => {
       const {msg, prompts} = res
-      if(msg === 'true'){
-        this.setState({errorText: ""})
-        console.log("YAY, START THE GAME WITH: " + prompts);
-        // this.props.history.push({
-        //   pathname: "/answer/private",
-        //   state: {
-        //     prompts
-        //   }
-        // })
-      }
-      else{
+      if(msg !== 'true'){
+        // this.setState({prompts: prompts})
+        // this.setState({errorText: ""})
+        // console.log("YAY, START THE GAME WITH: " + prompts);
         this.setState({errorText: "You either don't have enough players or are sending an incorrect code. Please try again."});
       }
     })
@@ -48,7 +39,17 @@ class WaitingPrivate extends React.Component{
     getPlayers(roomCode, (players) => {
       this.receivedPlayers(players)
     })
-
+    startGame(this.props.roomCode, res => {
+      const {msg, prompts} = res
+      this.setState({prompts: prompts})
+      // console.log("YAY, START THE GAME WITH: " + prompts);
+      this.props.history.push({
+        pathname: "/answer/private",
+        state: {
+          prompts
+        }
+      })
+    })
   }
   componentWillUnmount(){
     socket.off('join-private-room')

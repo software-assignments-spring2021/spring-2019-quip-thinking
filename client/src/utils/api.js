@@ -44,4 +44,5 @@ export const startGame = (roomCode, cb = () => {}) => {
         cb(output)
     })
 }
+
 export default socket

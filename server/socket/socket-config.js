@@ -78,15 +78,6 @@ module.exports = function (io) {
       cb(null, "Done");
     });
 
-    socket.on("get-players", (msg, cb=() =>{}) => {
-      const {roomCode} = msg;
-      if(currentPrivateRooms[roomCode]){
-        const names = (currentPrivateRooms[roomCode]).getPlayerNames();
-        socket.emit("get-players", {
-          players: names
-        })
-      }
-    })
 		socket.on('start-game', function(msg, cb) {
 			cb = cb || function() {};
 			
