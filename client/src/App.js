@@ -39,10 +39,11 @@ const App = () => (
           />
 
           <Route path = "/vote/private" render={({
-            location : {state : {roomCode, round}}
+            location : {state : {roomCode, round, prompts}}
           }) => <Vote
                   roomCode={roomCode}
                   round={round}
+                  prompts={prompts}
                 />}
           />
           <Route path = "/scoreboard/private" component = {Scoreboard}/>

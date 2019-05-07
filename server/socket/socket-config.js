@@ -57,7 +57,7 @@ module.exports = function (io) {
         if (currentPrivateRooms.hasOwnProperty(roomCode)) {
           // if game exists add user
           if (currentPrivateRooms[roomCode].addPlayer(socket.id, msg.name)) {
-	
+
                             const players = (currentPrivateRooms[roomCode]).getPlayerNames();
                             console.log('Players ', players);
 
@@ -291,23 +291,25 @@ module.exports = function (io) {
 
 		});
 
-		var countdown = 10;
+		var countdown = 1000;
 		setInterval(function() {
 		  countdown--;
 			if(countdown > 0 ){
-				console.log(countdown);
+				//console.log(countdown);
 				socket.emit('timer', { countdown: countdown });
 			}
 			else{
-				console.log('stop');
+				//console.log('stop');
 			}
 
 		}, 1000);
 
 		socket.on('reset', function (data) {
-		    countdown = 30;
+
+		    countdown = 40;
+
 		    socket.emit('timer', { countdown: countdown });
-				console.log('reset');
+				//console.log('reset');
 		  });
 
 

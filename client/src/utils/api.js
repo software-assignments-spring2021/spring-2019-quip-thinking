@@ -74,6 +74,21 @@ export const startTimer = ( cb = () => {}) => {
 
 }
 
+export const startVote = (round, roomCode, cb = () => {}) => {
+  console.log("emitting start vote");
+    socket.emit('start-vote', {roomCode: roomCode, round: round});
+
+}
+
+export const gotoVote = ( cb = () => {}) => {
+    socket.on('start-vote', msg => {
+        cb(msg)
+    })
+}
+
+
+
+
 export const updateTimer = ( cb = () => {}) => {
     socket.on('timer',msg => {
       console.log(msg.countdown);
