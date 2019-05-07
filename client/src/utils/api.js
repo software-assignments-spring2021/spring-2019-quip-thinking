@@ -44,17 +44,17 @@ export const sendVote = (id, code, player,  cb = () => {}) => {
 
 export const getInfo = (roomCode, cb = () => {}) => {
     socket.on('start-vote', ({prompts}) => {
-        cb(prompts)
+        cb(prompts);
     })
 }
 
 export const startGame = (roomCode, cb = () => {}) => {
-    socket.emit('start-game', { code: roomCode })
+    socket.emit('start-game', { code: roomCode });
 }
 
 export const getPrompts = (roomCode, cb = () => {}) => {
     socket.on('start-game', msg => {
-        cb(msg)
+        cb(msg);
     })
 }
 
@@ -63,7 +63,7 @@ export const answerPrompt = ( round, roomcode, answer, prompt, cb = () => {}) =>
     socket.emit('submit-answer', {round: round, roomCode: roomcode, ans: answer , prmpt: prompt})
     socket.on('submit-answer', msg => {
         if(msg=='success'){
-          
+
         }
     })
 }

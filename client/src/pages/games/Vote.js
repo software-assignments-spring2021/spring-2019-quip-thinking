@@ -10,35 +10,31 @@ class Vote extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // quip1 and quip2 are the votes
-      quip1: 0,
-      quip2: 0,
+      current: 0,
       prompts: undefined,
+      chosenQuipID: undefined,
+      idQuipArray: [],
     }
   }
 
   // send vote to backend
-  castVote() {
-    const { quip1, quip2 } = this.state;
-    if (quip1 === 1) {
-      sendVote(quip1);
-    } else {
-      sendVote(quip2);
-    }
+  castVote(quipID) {
+    const { code } = this.props;
+    sendVote(quipID, code);
   }
 
   // if user votes for the first quip
-  incrementQuip1() {
+  chooseQuip1() {
     this.setState({
-      quip1: 1,
+      chosenQuipID: this.state.idQuipArray[0][0],
     });
     this.castVote()
   }
 
   // if user votes for the second quip
-  incrementQuip2() {
+  chooseQuip2() {
     this.setState({
-      quip2: 1,
+      chosenQuipID: this.state.idQuipArray[1][0],
     });
     this.castVote()
   }
@@ -51,11 +47,21 @@ class Vote extends React.Component {
         prompts: prompts,
       });
     })
+    var promptArray = [];
+    for (var prompt in this.state.prompts) {
+      promptArray.push(prompt);
+    }
 
+    for (var [key1, key2] in promptArray[this.state.current]) {
+      this.setState({
+        idQuipArray: [[key1, promptArray[this.state.current].key1], [key2, promptArray[this.state.current].key2]],
+        current: this.state.current + 1,
+      });
+    }
   }
 
   // cut off connection with end-round
-  componentWillUnmount(){
+  componentWillUnmount() {
     socket.off('end-round')
   }
 
@@ -72,10 +78,10 @@ class Vote extends React.Component {
     <Row>
       <Col>
 
-        <Button variant="light" onClick={this.incrementQuip1()}> {this.state.firstQuip} </Button>
+        <Button variant="light" onClick={this.chooseQuip1()}> {this.state.idQuipArray[0][1]} </Button>
       </Col>
       <Col>
-        <Button variant="dark" onClick={this.incrementQuip2()}> {this.state.secondQuip} </Button>
+        <Button variant="dark" onClick={this.chooseQuip2()}> {this.state.idQuipArray[1][1]} </Button>
       </Col>
     </Row>
     </div>
