@@ -1,11 +1,11 @@
 import React from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { addPrompt } from "../utils/api";
- 
+
 let Filter = require("bad-words");
 
-export class AddModal extends React.Component{
-  constructor(props){
+export class AddModal extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       message: "",
@@ -25,14 +25,14 @@ export class AddModal extends React.Component{
     }
   }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     const { message, clean } = this.state;
     let filter = new Filter();
     if (clean) {
       addPrompt(filter.clean(message))
     }
   }
-  render(){
+  render() {
     return(
       <>
         <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>

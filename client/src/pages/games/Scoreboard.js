@@ -94,10 +94,11 @@ var Scoreboard;
 if (roundNumber === 1 || roundNumber === 2) {
   Scoreboard = () => {
     return(
-  <><Header>
-    <ListGroup>
-      {text}
-    </ListGroup>
+  <>
+    <Header>
+      <ListGroup>
+        {text}
+      </ListGroup>
     </Header>
   </>
 
@@ -108,13 +109,14 @@ if (roundNumber === 1 || roundNumber === 2) {
   if (containsTie) {
     Scoreboard = () => {
       return(
-    <><Header>
-      <ListGroup>
-        {text}
-      </ListGroup>
-      <Alert variant="primary">
-        Tie! The winners are {winners}
-      </Alert>
+    <>
+      <Header>
+        <ListGroup>
+          {text}
+        </ListGroup>
+        <Alert variant="primary">
+          Tie! The winners are {winners}
+        </Alert>
       </Header>
     </>
 
@@ -124,13 +126,14 @@ if (roundNumber === 1 || roundNumber === 2) {
   } else {
     Scoreboard = () => {
       return(
-    <><Header>
-      <ListGroup>
-        {text}
-      </ListGroup>
-      <Alert variant="primary">
-        The winner is {scoresArray[0][0]}
-      </Alert>
+    <>
+      <Header>
+        <ListGroup>
+          {text}
+        </ListGroup>
+        <Alert variant="primary">
+          The winner is {scoresArray[0][0]}
+        </Alert>
       </Header>
     </>
 

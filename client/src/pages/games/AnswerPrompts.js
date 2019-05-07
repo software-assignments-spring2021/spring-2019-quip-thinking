@@ -1,7 +1,7 @@
 import React from "react";
-import { Modal, Form, Button } from "react-bootstrap";
+// import { Modal, Form, Button } from "react-bootstrap";
 import "./game.css";
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 import { answerPrompt } from '../../utils/api'
 
 export class AnswerPrompts extends React.Component{

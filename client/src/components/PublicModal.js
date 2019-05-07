@@ -7,14 +7,14 @@ export class PublicModal extends React.Component {
         <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-            Create a Public Room
+              Create a Public Room
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form style={{width: '100%'}}>
-                <Form.Label>Room Name</Form.Label>
+                <Form.Label> Room Name </Form.Label>
                 <Form.Control placeholder="Enter a room name" />
-                <Form.Label>Player Name</Form.Label>
+                  <Form.Label> Player Name </Form.Label>
                 <Form.Control placeholder="Enter your player name" />
             </Form>
           </Modal.Body>

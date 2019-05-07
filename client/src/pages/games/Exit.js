@@ -3,7 +3,7 @@ import "./game.css";
 import { Form, Row, Col } from "react-bootstrap";
 
 class Exit extends React.Component{
-  render(){
+  render() {
     return (
       <div className="exit">
         <Form>
@@ -19,7 +19,7 @@ class Exit extends React.Component{
             </Col>
           </Row>
         </Form>
-  
+
       </div>
     )
   }
