@@ -33,7 +33,7 @@ class WaitingPrivate extends React.Component{
 
   componentWillUnmount(){
     socket.off('join-private-room')
-    
+
   }
 
   render(){
