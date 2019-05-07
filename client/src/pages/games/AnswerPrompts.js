@@ -1,8 +1,8 @@
 import React from "react";
 // import { Modal, Form, Button } from "react-bootstrap";
 import "./game.css";
-// import io from 'socket.io-client'
-import { answerPrompt } from '../../utils/api'
+//import io from 'socket.io-client'
+import socket, { answerPrompt, answersSuccessful } from '../../utils/api'
 
 export class AnswerPrompts extends React.Component{
   constructor(props){
@@ -15,11 +15,10 @@ export class AnswerPrompts extends React.Component{
       finished: false,
       answerOne: '',
       answerTwo: '',
-      round: 1,
-      roomcode: '',
-
-
+      round: this.props.round,
+      roomCode: this.props.roomCode,
     };
+    this.answersSent.bind(this);
     console.log(this.props.prompts)
   }
 
@@ -33,21 +32,10 @@ export class AnswerPrompts extends React.Component{
 
   answerPrompt(e){
     e.preventDefault();
-    let one = this.props.roomCode;
-    let two = this.props.prompts;
-    let three = this.props.round;
-    console.log(one, ' this is room code');
-    console.log(two.length, 'this is prompt length ');
-    console.log(three, ' this is three');
-
-
-    this.setState({finished: true});
+    // this.setState({finished: true});
     //console.log(this.state.finished);
     answerPrompt(this.props.round, this.props.roomCode, this.state.answerOne, this.props.prompts[(this.props.round*2)-2]);
     answerPrompt(this.props.round, this.props.roomCode, this.state.answerTwo, this.props.prompts[(this.props.round*2)-1]);
-    console.log("yay");
-
-
   }
 
   showPrompt(number){
@@ -58,8 +46,6 @@ export class AnswerPrompts extends React.Component{
         <input name="answer" type="text" onChange = {this.fieldoneChange.bind(this)}  />
         {this.props.prompts[this.state.round*2-1]}
         <input name="answer" type="text" onChange = {this.fieldtwoChange.bind(this)} />
-
-
 
        <button>Send data!</button>
      </form>
@@ -73,24 +59,46 @@ export class AnswerPrompts extends React.Component{
       return true;
     }
     return false;
+  }
+  
+  answersSent(){
+    this.setState({finished: true});
+  }
 
-    }
+  componentDidMount(){
+    const roomCode=this.props.roomCode;
+    const round=this.props.round;
+    answersSuccessful(res => {
+      const {start} = res
+      if(start === "success"){
+        this.answersSent(true);
+        console.log("TRYING TO SEND TO NEXT PAGE")
+        console.log("ROOMCODE: ", roomCode)
+        console.log("ROUND: ", round)
+        this.props.history.push({
+          pathname: "/vote/private",
+          state: {
+            roomCode,
+            round
+          }
+        })
+      }
+      else{
+        console.log("SOMETHING WENT WRONG")
+      }
+    })
+  }
 
-
-
-
-
+  componentWillUnmount(){
+    socket.off('submit-answer');
+  }
 
   render(){
-
     return(
-
       <>
-        <div className="create"> Hi:
+        <div className="create">
         { this.state.finished ?  '': this.showPrompt(this.state.accumulator)}
-
         </div>
-
       </>
     )
   }
