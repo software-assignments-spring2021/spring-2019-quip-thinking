@@ -40,7 +40,8 @@ module.exports = function (io) {
 
 			io.to(socket.id).emit('create-private-room', {
 				roomCode: rand,
-				roomName: game.roomName
+				roomName: game.roomName,
+				players: [msg.playerName]
 			})
       			cb(null, 'Done');
 		});
@@ -56,6 +57,16 @@ module.exports = function (io) {
         if (currentPrivateRooms.hasOwnProperty(roomCode)) {
           // if game exists add user
           if (currentPrivateRooms[roomCode].addPlayer(socket.id, msg.name)) {
+	
+                            const players = (currentPrivateRooms[roomCode]).getPlayerNames();
+                            console.log('Players ', players);
+
+                            const ids = Array.from(new Set(Object.keys(currentPrivateRooms[roomCode].players)));
+                            for (let i = 0; i < players.length; i++) {
+                                io.to(ids[i]).emit('join-private-room', { msg: 'success', players: players, roomName: currentPrivateRooms[roomCode].roomName});
+                            }
+                        io.to(socket.id).emit('join-private-room', { msg: 'success', players: players, roomName: currentPrivateRooms[roomCode].roomName});
+		/*
             socket.broadcast.emit("join-private-room", {
               msg: "success",
               players: Object.values(currentPrivateRooms[roomCode].players).map(p => p.name),
@@ -65,7 +76,7 @@ module.exports = function (io) {
               msg: "success",
               players: Object.values(currentPrivateRooms[roomCode].players).map(p => p.name),
               roomName: currentPrivateRooms[roomCode].roomName
-            });
+            }); */
           } else {
             socket.emit("join-private-room", { msg: "room full" });
           }
@@ -194,8 +205,7 @@ module.exports = function (io) {
 			cb(null, 'Done');
 		});
 
-
-		socket.on('end-round', function(msg, cb) {
+		socket.on('start-vote', function(msg, cb) {
 			cb = cb || function() {};
 
 			const roomCode = msg.roomCode;
