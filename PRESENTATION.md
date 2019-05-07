@@ -44,3 +44,15 @@
   - We give users the ability to play with anyone, from their friends to strangers, from the comfort of their computers or phones.
   - They can join a public room or make their own private room with a room code to play with their friends.
   - Users can also add their own prompts (first vetted by us!) to our database of prompts.
+
+## Users
+
+- **Audience**
+
+  Users
+Who are you making this for?
+
+What tendencies and/or limitations does this audience have that you took into consideration when designing your project?
+What need does this fill?
+Have you done any user observation of your target audience using this project?
+Have you tested the project with your intended audience?
