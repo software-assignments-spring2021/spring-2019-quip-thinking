@@ -38,13 +38,13 @@ export const subscribeToJoins = (cb = () => {}) => {
     })
 }
 
-export const sendVote = (vote, cb = () => {}) => {
-    socket.emit('vote', {vote});
+export const sendVote = (id, code, player,  cb = () => {}) => {
+    socket.emit('end-vote', {id, code, player});
 }
 
 export const getInfo = (roomCode, cb = () => {}) => {
-    socket.on('end-round', ({prompt, quip1, quip2}) => {
-        cb(prompt, quip1, quip2)
+    socket.on('start-vote', ({prompts}) => {
+        cb(prompts)
     })
 }
 

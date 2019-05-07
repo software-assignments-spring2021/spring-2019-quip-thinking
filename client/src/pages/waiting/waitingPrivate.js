@@ -25,7 +25,7 @@ class WaitingPrivate extends React.Component{
   receivedPlayers(players){
     this.setState({players: players})
   }
-  
+
   startPrivateGame(){
     const roomCode = this.props.roomCode;
     const round = this.state.round;
@@ -71,9 +71,9 @@ class WaitingPrivate extends React.Component{
 
   }
 
-  render(){
+  render() {
     const { players } = this.state
-    return(
+    return (
       <>
         <div id="waitingPrivate">
           <div id="heading">

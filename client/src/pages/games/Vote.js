@@ -13,10 +13,7 @@ class Vote extends React.Component {
       // quip1 and quip2 are the votes
       quip1: 0,
       quip2: 0,
-      prompts: [],
-      // first and second quips are the actual words
-      firstQuip: "",
-      secondQuip: "",
+      prompts: undefined,
     }
   }
 
@@ -49,11 +46,9 @@ class Vote extends React.Component {
   // load the page with the prompts, first quip, and second quip
   componentDidMount(){
     const { roomCode } = this.props
-    getInfo(roomCode, (prompts, firstQuip, secondQuip) => {
+    getInfo(roomCode, (prompts) => {
       this.setState({
         prompts: prompts,
-        firstQuip: firstQuip,
-        secondQuip: secondQuip,
       });
     })
 
