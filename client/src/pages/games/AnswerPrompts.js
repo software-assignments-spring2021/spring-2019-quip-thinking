@@ -27,6 +27,7 @@ export class AnswerPrompts extends React.Component{
      let times = res.countdown;
      console.log(times, 'yay');
      this.setState({time: times});
+
    });
 
 
@@ -46,6 +47,7 @@ export class AnswerPrompts extends React.Component{
     //console.log(this.state.finished);
     answerPrompt(this.props.round, this.props.roomCode, this.state.answerOne, this.props.prompts[(this.props.round*2)-2]);
     answerPrompt(this.props.round, this.props.roomCode, this.state.answerTwo, this.props.prompts[(this.props.round*2)-1]);
+    this.setState({finished: true});
   }
 
   showPrompt(number){
@@ -109,7 +111,7 @@ export class AnswerPrompts extends React.Component{
       <>
         <div className="create">
         {this.state.time}
-        { this.state.finished ?  '': this.showPrompt(this.state.accumulator)}
+        { this.state.finished ?  'Waiting for other players': this.showPrompt(this.state.accumulator)}
         </div>
       </>
     )
