@@ -13,13 +13,13 @@ export class AnswerPrompts extends React.Component{
     super(props);
     this.state = {
       players: [],
-      prompts: ['How aaegaergarg', 'Best Cheeseaergaerg'],
+      prompts: ['question b ', 'question a'],
       accumulator: 0,
       answer: [],
       finished: false,
       answerOne: '',
       answerTwo: '',
-      round: '',
+      round: 1,
       roomcode: '',
 
 
@@ -47,10 +47,10 @@ export class AnswerPrompts extends React.Component{
   showPrompt(number){
     return(
       <div>
-        {this.state.prompts[number]}
+        {this.state.prompts[(this.state.round*2)-1]}
         <form onSubmit={this.answerPrompt.bind(this)}>
         <input name="answer" type="text" onChange = {this.fieldoneChange.bind(this)}  />
-        {this.state.prompts[number+1]}
+        {this.state.prompts[this.state.round*2-2]}
         <input name="answer" type="text" onChange = {this.fieldtwoChange.bind(this)} />
 
 
