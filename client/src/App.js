@@ -28,8 +28,24 @@ const App = () => (
                   playerName={playerName}
                 />}
           />
-          <Route path = "/answer/private" component = {AnswerPrompts}/>
-          <Route path = "/vote/private" component = {Vote}/>
+
+          <Route path = "/answer/private" render={({
+            location: {state: {roomCode, prompts, round}}
+          }) => <AnswerPrompts
+                  roomCode={roomCode}
+                  prompts={prompts}
+                  round={round}
+                />}
+          />
+
+          <Route path = "/vote/private" render={({
+            location : {state : {prompts, firstQuip, secondQuip}}
+          }) => <Vote
+                  prompt={prompts}
+                  firstQuip={firstQuip}
+                  secondQuip={secondQuip}
+                />}
+          />
           <Route path = "/scoreboard/private" component = {Scoreboard}/>
           <Route path = "/exit/private" component = {Exit}/>
           <Route path = "/join/public" component={JoinPublic}/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Button} from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import { createPrivateRoom } from '../../utils/api'
 import './create.css';
@@ -47,7 +47,7 @@ class CreatePrivate extends React.Component{
             <Form.Label>Player Name</Form.Label>
             <Form.Control placeholder="Enter Player Name" onChange={this.handleNameChange.bind(this)}/>
           </Form>
-          <br></br>
+          <br/>
           <Button onClick={this.submitForm.bind(this)}>Submit</Button>
         </div>
         </>

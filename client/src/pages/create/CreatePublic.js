@@ -1,6 +1,6 @@
 import React from 'react';
 import './create.css';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Nav, Form, Row, Col, Button } from 'react-bootstrap';
 import Header from "../../components/header";
 import socket, { getPlayers, subscribeToJoins } from '../../utils/api'
 import { withRouter } from 'react-router-dom';
@@ -57,7 +57,7 @@ class CreatePublic extends React.Component {
         <br />
         <Row>
           <Col>
-            <Form.Control placeholder="You are Here" />
+            <Form.Control placeholder={this.state.players[0]} />
           </Col>
           <Col>
             <Form.Control placeholder={this.state.players[4]} />
@@ -95,9 +95,7 @@ class CreatePublic extends React.Component {
         </Row>
 
         <br/>
-        <Button variant="primary" type="submit">
-          Start the Game!
-        </Button>
+        <Nav.Link href="#"><Button variant="primary" type="submit"> Start the Game! </Button></Nav.Link>
       </Form>
     </div>
     </Header>
