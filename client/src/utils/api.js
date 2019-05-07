@@ -38,8 +38,8 @@ export const subscribeToJoins = (cb = () => {}) => {
     })
 }
 
-export const sendVote = (id, code, player,  cb = () => {}) => {
-    socket.emit('end-vote', {id, code, player});
+export const sendVote = (id, code, quip,  cb = () => {}) => {
+    socket.emit('end-vote', {id, code, quip});
 }
 
 export const getInfo = (roomCode, cb = () => {}) => {
