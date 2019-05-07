@@ -13,22 +13,27 @@ export class AnswerPrompts extends React.Component{
       prompts: ['question a ', 'question b'],
       accumulator: 0,
       answer: [],
+      time: 400,
       finished: false,
       answerOne: '',
       answerTwo: '',
       round: this.props.round,
       roomCode: this.props.roomCode,
+      timeOut: false
     };
     this.answersSent.bind(this);
     console.log(this.props.prompts)
 
 
     updateTimer(res=>{
-     let times = res.countdown;
-     console.log(times, 'yay');
-     this.setState({time: times});
+      let times = res.countdown;
+      console.log(times, 'yay');
+      this.setState({time: times});
 
-   });
+      if(this.state.time === 1){
+        this.setState({timeOut:true})
+      } 
+    });
 
 
   }
@@ -81,9 +86,11 @@ export class AnswerPrompts extends React.Component{
     startTimer();
     const roomCode=this.props.roomCode;
     const round=this.props.round;
+    const timeOut=this.props.timeOut;
     answersSuccessful(res => {
-      const {start} = res
-      if(start === "success"){
+      if(timeOut === true){
+      // const {start} = res
+      // if(start === "success"){
         this.answersSent(true);
         console.log("TRYING TO SEND TO NEXT PAGE")
         console.log("ROOMCODE: ", roomCode)
