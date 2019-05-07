@@ -74,11 +74,7 @@ class WaitingPrivate extends React.Component{
           <div id="heading">
             <h1>{this.props.roomName}</h1>
             <h2 id="code">Room Code: {this.props.roomCode}</h2>
-<<<<<<< HEAD
-            <h2 id="time">Timer: <div id="counter"></div> </h2>
-=======
               <h2 id="time">Timer: <span id="timer"></span> </h2>
->>>>>>> 9211fd9d17dc9b8d488b73110c87cfceda86384d
           </div>
           <div id="players">
             {players.map(p => (
