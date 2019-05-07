@@ -1,6 +1,6 @@
 import React from 'react';
 import './waiting.css';
-import "../games/TImer.js";
+import "../games/Timer.js";
 import {Button} from 'react-bootstrap';
 import {withRouter} from 'react-router-dom'
 import socket, { getPlayers, subscribeToJoins } from '../../utils/api'
