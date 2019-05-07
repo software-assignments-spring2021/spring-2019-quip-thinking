@@ -31,6 +31,10 @@ class Player {
 	getPrompts() {
 		return this.prompts;
 	}
+	
+	getName() {
+		return this.name;
+	}
 }
 /*
 * Game class that controls
@@ -77,6 +81,15 @@ class Game {
 
 	getNumberofPlayers() {
 		return Object.keys(this.players).length;
+	}
+
+	getPlayerName(socketId) {
+		return (this.players[socketId]).getName();
+	}
+
+	updateScore(socketId) {
+		(this.players[socketId]).updateScore(this.point);
+//		return (this.players[socketId).getScore();
 	}
 }
 module.exports = Game;
