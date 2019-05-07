@@ -40,7 +40,7 @@ class CreatePrivate extends React.Component{
       <>
         <div className="create">
           <h1>Create a Private Room</h1>
-          <Form style={{width: '100%'}}>
+          <Form style={{width: '50%'}}>
             <Form.Label>Room Name</Form.Label>
             <Form.Control placeholder="Enter a room name" onChange={this.handleRoomChange.bind(this)}/>
             <Form.Label>Player Name</Form.Label>

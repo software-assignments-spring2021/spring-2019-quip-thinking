@@ -27,14 +27,6 @@ class WaitingPrivate extends React.Component{
       this.receivedPlayers(players)
     })
 
-    // socket.on('join-private-room', ({ msg, players }) => {
-    //   console.log(msg)
-    //   console.log(players)
-    //   if (msg === 'success') {
-    //     this.receivedPlayers(players)
-    //   }
-    // })
-
   }
   componentWillUnmount(){
     socket.off('join-private-room')

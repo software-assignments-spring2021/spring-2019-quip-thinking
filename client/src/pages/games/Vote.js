@@ -3,7 +3,7 @@ import "./game.css";
 import { Nav, Row, Col, Button, Jumbotron } from "react-bootstrap";
 import Header from "../../components/header";
 
-const Game = () => {
+const Vote = () => {
   return(
 <>
   <div className="create">
@@ -39,4 +39,4 @@ class Player{
   
 }
 
-export default Game;
+export default Vote;
