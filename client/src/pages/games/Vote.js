@@ -13,7 +13,7 @@ class Vote extends React.Component {
       // quip1 and quip2 are the votes
       quip1: 0,
       quip2: 0,
-      prompt: "",
+      prompts: [],
       // first and second quips are the actual words
       firstQuip: "",
       secondQuip: "",
@@ -46,12 +46,12 @@ class Vote extends React.Component {
     this.castVote()
   }
 
-  // load the page with the prompt, first quip, and second quip
+  // load the page with the prompts, first quip, and second quip
   componentDidMount(){
     const { roomCode } = this.props
-    getInfo(roomCode, (prompt, firstQuip, secondQuip) => {
+    getInfo(roomCode, (prompts, firstQuip, secondQuip) => {
       this.setState({
-        prompt: prompt,
+        prompts: prompts,
         firstQuip: firstQuip,
         secondQuip: secondQuip,
       });
@@ -72,7 +72,7 @@ class Vote extends React.Component {
     <Header/>
     <Jumbotron>
       <h1>Round {this.props.round}</h1>
-      <p>{this.state.prompt}</p>
+      <p>{this.state.prompts[this.props.round]}</p>
     </Jumbotron>
     <Row>
       <Col>

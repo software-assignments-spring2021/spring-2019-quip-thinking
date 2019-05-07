@@ -28,7 +28,7 @@ const App = () => (
                   playerName={playerName}
                 />}
           />
-          
+
           <Route path = "/answer/private" render={({
             location: {state: {roomCode, prompts, round}}
           }) => <AnswerPrompts
@@ -39,9 +39,9 @@ const App = () => (
           />
 
           <Route path = "/vote/private" render={({
-            location : {state : {prompt, firstQuip, secondQuip}}
+            location : {state : {prompts, firstQuip, secondQuip}}
           }) => <Vote
-                  prompt={prompt}
+                  prompt={prompts}
                   firstQuip={firstQuip}
                   secondQuip={secondQuip}
                 />}
