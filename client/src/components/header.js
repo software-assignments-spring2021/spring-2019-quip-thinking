@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+//import '../App.css';
 import logo from '../logo.png';
 import { Nav, Navbar, Button } from 'react-bootstrap';
 // import { LinkContainer } from "react-router-bootstrap"

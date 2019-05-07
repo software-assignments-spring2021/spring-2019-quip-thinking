@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:1337'
-const socket = io(API_URL);
+const socket = io('http://localhost:8000');
 
 export const createPrivateRoom = (roomName, playerName, cb = () => {}) => {
     socket.emit('create-private-room', {
@@ -60,8 +60,12 @@ export const getPrompts = (roomCode, cb = () => {}) => {
 
 export const answerPrompt = ( round, roomcode, answer, prompt, cb = () => {}) => {
     console.log('happening');
-    socket.emit('answerPrompt', {round: round, roomcode: roomcode, answer: answer , prompt: prompt})
-
+    socket.emit('submit-answer', {round: round, roomCode: roomcode, ans: answer , prmpt: prompt})
+    socket.on('submit-answer', msg => {
+        if(msg=='success'){
+          
+        }
+    })
 }
 
 export default socket

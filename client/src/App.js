@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+//import './App.css';
 import Home from './pages/home/home';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/header";
@@ -28,7 +28,7 @@ const App = () => (
                   playerName={playerName}
                 />}
           />
-          
+
           <Route path = "/answer/private" render={({
             location: {state: {roomCode, prompts, round}}
           }) => <AnswerPrompts
