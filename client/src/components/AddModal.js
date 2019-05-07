@@ -1,62 +1,37 @@
-import React from 'react';
-import { Modal, Form, Button, Nav } from 'react-bootstrap';
-import axios from "axios";
-
-let Filter = require('bad-words');
-
+import React from "react";
+import { Modal, Form, Button } from "react-bootstrap";
+import { addPrompt } from "../utils/api";
+ 
+let Filter = require("bad-words");
 
 export class AddModal extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      message: '',
-      clean: true,
+      message: "",
+      clean: true
+    };
+  }
+
+  textChange(e) {
+    this.setState({ message: e.target.value });
+    let filter = new Filter();
+    let prompt = this.state.message;
+    if(filter.isProfane(prompt)){
+      console.log("There are curse words in the prompt");
+      this.setState({clean: false});
+    }else{
+      this.setState({clean: true});
     }
+  }
 
-
-}
-
-
-    textChange(e) {
-      this.setState({ message : e.target.value })
-      let filter = new Filter();
-      let prompt = this.state.message;
-      if(filter.isProfane(prompt)){
-        console.log("There are curse words in the prompt");
-        this.setState({clean: false});
-      }else{
-        this.setState({clean: true});
-      }
-
+  handleSubmit(e){
+    const { message, clean } = this.state;
+    let filter = new Filter();
+    if (clean) {
+      addPrompt(filter.clean(message))
     }
-
-    handleSubmit(e){
-      console.log(this.state.message);
-      let prompt = this.state.message;
-      let filter = new Filter();
-      prompt = filter.clean(prompt);
-      console.log(prompt);
-
-      if(this.state.clean){
-
-        //send to backend
-      }
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
   render(){
     return(
       <>
@@ -73,7 +48,7 @@ export class AddModal extends React.Component{
             even see it in your own game!</Form.Label>
                 <Form.Control placeholder="Fill prompt here..." />
                 <Form.Text className="text-muted">
-                  <h3> {this.state.clean ? ' ': 'Bad words in prompt may not be saved'} </h3>
+                  <h3>{" "}{this.state.clean ? " " : "Bad words in prompt may not be saved"}{" "}</h3>
                     Make your prompt fun and original!
                 </Form.Text>
             </Form>

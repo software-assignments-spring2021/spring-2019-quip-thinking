@@ -109,8 +109,7 @@ module.exports = function (io) {
 								for (let j = start, k = 0; j < limit; j++, k++) {
 									currentPrivateRooms[msg.code]['round_'+r][prompts[j]] = {};
 								
-									//initialize pairs on this prompt with empty quotes
-									
+									//initialize pairs on this prompt with empty quote									
 									
 									//assign each pair a prompt
 									currentPrivateRooms[msg.code]['round_'+r][prompts[j]][pairs[k][0]] = '';
@@ -212,15 +211,9 @@ module.exports = function (io) {
 	}
 });
 
-
-
-
 		});
 
 
 	});
-
-
-
 
 }

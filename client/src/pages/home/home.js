@@ -18,11 +18,11 @@ class Home extends React.Component {
 
     joinGame() {
         const { roomCode, playerName } = this.state
-        joinPrivateRoom(roomCode, playerName, (res) => {
+        joinPrivateRoom(roomCode, playerName, res => {
             const { roomName, msg } = res
             if (msg === 'success') {
                 this.props.history.push({
-                    pathname: '/waiting/private',
+                    pathname: "/waiting/private",
                     state: {
                         roomCode,
                         playerName,
@@ -52,4 +52,4 @@ class Home extends React.Component {
     }
 }
 
-export default withRouter(Home)
+export default withRouter(Home);
