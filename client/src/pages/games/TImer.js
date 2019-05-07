@@ -1,5 +1,17 @@
 import React from "react";
 
+var time = 90;
+
+var timer = setInterval(function() {
+	document.getElementById("countdown").innerHTML = time + " seconds";
+	time -= 1;
+
+	if (time <= 0) {
+		clearInterval(timer);
+		document.getElementById("countdown").innerHTML = "time's up!"
+	}
+}, 1000);
+
 const timer = () => {
 	return(
 			<div className="timer">
