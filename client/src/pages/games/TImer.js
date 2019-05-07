@@ -1,5 +1,38 @@
 import React from "react";
 
+// notes: https://robdodson.me/building-a-countdown-timer-with-socket-dot-io/
+
+var countdown = 90000;
+
+timer(function() {
+	countdown--;
+
+	io.sockets.emit("timer", {countdown: countdown});
+
+}, 5000);
+
+io.sockets.on("on", function(socket) {
+	socket.on("reset", function(data) {
+		countdown = 90000;
+
+		io.sockets.emit("timer", {countdown: countdown});
+	});
+});
+
+// var count = 90;
+
+// var counter = setInterval(timer, 1000);
+
+// function timer() {
+// 	count -= 1;
+
+// 	if (count <= 0) {
+// 		clearInterval(counter);
+// 		return;
+// 	}
+	
+// }
+
 // var time = 90;
 
 // var timer = setInterval(function() {
@@ -16,21 +49,6 @@ import React from "react";
 
 // 	document.getElementById("timer").innerHTML = time + " seconds";
 // }, 1000);
-
-var count = 90;
-
-var counter = setInterval(timer, 1000);
-
-function timer() {
-	count -= 1;
-
-	if (count <= 0) {
-		clearInterval(counter);
-		return;
-	}
-
-	// document.getElementById("timer").innerHTML=count + " secs";
-}
 
 // const timer = () => {
 // 	return(
@@ -59,22 +77,3 @@ function timer() {
 // }
 
 // export default timer;
-
-// notes: https://robdodson.me/building-a-countdown-timer-with-socket-dot-io/
-
-// var countdown = 90000;
-
-// timer(function() {
-// 	countdown--;
-
-// 	io.sockets.emit("timer", {countdown: countdown});
-
-// }, 5000);
-
-// io.sockets.on("on", function(socket) {
-// 	socket.on("reset", function(data) {
-// 		countdown = 90000;
-
-// 		io.sockets.emit("timer", {countdown: countdown});
-// 	});
-// });
