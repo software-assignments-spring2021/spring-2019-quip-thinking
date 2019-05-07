@@ -206,7 +206,7 @@ module.exports = function (io) {
 		});
 
 	
-		socket.on('end-round', function(msg, cb) {
+		socket.on('start-vote', function(msg, cb) {
 			cb = cb || function() {};
 
 			const roomCode = msg.roomCode;
