@@ -28,8 +28,16 @@ const App = () => (
                   playerName={playerName}
                 />}
           />
-          <Route path = "/answer/private" component = {AnswerPrompts}/>
           
+          <Route path = "/answer/private" render={({
+            location: {state: {roomCode, prompts, round}}
+          }) => <AnswerPrompts
+                  roomCode={roomCode}
+                  prompts={prompts}
+                  round={round}
+                />}
+          />
+
           <Route path = "/vote/private" render={({
             location : {state : {prompt, firstQuip, secondQuip}}
           }) => <Vote
