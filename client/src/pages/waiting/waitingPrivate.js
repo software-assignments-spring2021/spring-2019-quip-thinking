@@ -22,6 +22,9 @@ class WaitingPrivate extends React.Component{
     })
     this.receivedPrompts.bind(this);
   }
+
+
+  
   receivedPlayers(players){
     this.setState({players: players})
   }
@@ -60,7 +63,7 @@ class WaitingPrivate extends React.Component{
       }
     })
   }
-  
+
   componentWillUnmount(){
     socket.off('join-private-room')
     socket.off('start-game')

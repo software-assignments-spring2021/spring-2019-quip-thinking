@@ -44,7 +44,10 @@ class Vote extends React.Component {
 
   // load the page with the prompts, first quip, and second quip
   componentDidMount(){
-    const { roomCode } = this.props.roomCode
+    const  roomCode  = this.props.roomCode
+    const prompts = this.props.prompts
+    console.log(roomCode);
+    console.log(prompts);
     getInfo(roomCode, (prompts) => {
       this.setState({
         prompts: prompts,
@@ -73,19 +76,7 @@ class Vote extends React.Component {
     return(
   <>
     <div className="create">
-    <Header/>
-    <Jumbotron>
-      <h1>Round {this.props.round}</h1>
-      <p>{this.state.prompts[this.props.round]}</p>
-    </Jumbotron>
-    <Row>
-      <Col>
-        <Button variant="light" onClick={this.chooseQuip1()}> {this.state.idQuipArray[0][1]} </Button>
-      </Col>
-      <Col>
-        <Button variant="dark" onClick={this.chooseQuip2()}> {this.state.idQuipArray[1][1]} </Button>
-      </Col>
-    </Row>
+        OMG IT WORKED
     </div>
   </>
     )

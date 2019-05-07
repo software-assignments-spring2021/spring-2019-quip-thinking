@@ -2,8 +2,8 @@ import React from "react";
 // import { Modal, Form, Button } from "react-bootstrap";
 import "./game.css";
 //import io from 'socket.io-client'
-
-import socket, { answerPrompt , answersSuccessful, startTimer, updateTimer} from '../../utils/api'
+import {withRouter} from 'react-router-dom'
+import socket, { answerPrompt , answersSuccessful, startTimer, updateTimer, startVote, gotoVote} from '../../utils/api'
 
 export class AnswerPrompts extends React.Component{
   constructor(props){
@@ -16,8 +16,8 @@ export class AnswerPrompts extends React.Component{
       finished: false,
       answerOne: '',
       answerTwo: '',
-      round: this.props.round,
-      roomCode: this.props.roomCode,
+      round: 0,
+      roomCode: 0,
     };
     this.answersSent.bind(this);
     console.log(this.props.prompts)
@@ -27,11 +27,18 @@ export class AnswerPrompts extends React.Component{
      let times = res.countdown;
      console.log(times, 'yay');
      this.setState({time: times});
+     if(times == 1){
+       console.log("timer hit 0");
+       console.log(this.roomCode);
+       startVote(this.state.round, this.state.roomCode);
+     }
 
    });
 
-
   }
+
+
+
 
   fieldoneChange(e){
     this.setState({answerOne: e.target.value});
@@ -77,29 +84,34 @@ export class AnswerPrompts extends React.Component{
     this.setState({finished: true});
   }
 
+
+
   componentDidMount(){
     startTimer();
-    const roomCode=this.props.roomCode;
-    const round=this.props.round;
-    answersSuccessful(res => {
-      const {start} = res
-      if(start === "success"){
-        this.answersSent(true);
-        console.log("TRYING TO SEND TO NEXT PAGE")
-        console.log("ROOMCODE: ", roomCode)
-        console.log("ROUND: ", round)
-        this.props.history.push({
-          pathname: "/vote/private",
-          state: {
-            roomCode,
-            round
-          }
-        })
-      }
-      else{
-        console.log("SOMETHING WENT WRONG")
-      }
+    this.setState({
+      round: this.props.round,
+      roomCode:this.props.roomCode,
     })
+    gotoVote(res => {
+      const {round, prompts} = res
+      const {start} = res
+      const roomCode=this.state.roomCode;
+
+      console.log("TRYING TO SEND TO NEXT PAGE")
+      console.log("ROOMCODE: ", roomCode)
+      console.log("ROUND: ", round)
+      this.props.history.push({
+        pathname: "/vote/private",
+        state: {
+          roomCode,
+          round,
+          prompts,
+        }
+      })
+
+
+    })
+
   }
 
   componentWillUnmount(){
@@ -118,4 +130,4 @@ export class AnswerPrompts extends React.Component{
   }
 }
 
-export default AnswerPrompts;
+export default withRouter(AnswerPrompts);
