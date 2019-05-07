@@ -62,7 +62,7 @@ module.exports = function (io) {
 
                             const ids = Array.from(new Set(Object.keys(currentPrivateRooms[roomCode].players)));
                             for (let i = 0; i < players.length; i++) {
-                                io.to(ids[i]).emit('join-private-room', { msg: 'success', names: players, roomName: currentPrivateRooms[roomCode].roomName});
+                                io.to(ids[i]).emit('join-private-room', { msg: 'success', players: players, roomName: currentPrivateRooms[roomCode].roomName});
                             }
 
                         //io.to(socket.id).emit('join-private-room', { msg: 'success', names: players, roomName: currentPrivateRooms[roomCode].roomName});
