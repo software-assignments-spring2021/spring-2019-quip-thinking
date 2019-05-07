@@ -3,7 +3,7 @@ import './App.css';
 import Home from './pages/home/home';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/header";
-import JoinRoom from "./pages/join/JoinRoom";
+import JoinPublic from "./pages/join/JoinPublic";
 import CreatePrivate from "./pages/create/CreatePrivate";
 import Error from "./pages/error/Error";
 import Vote from "./pages/games/Vote";
@@ -31,7 +31,7 @@ const App = () => (
           <Route path = "/vote/private" component = {Vote}/>
           <Route path = "/scoreboard/private" component = {Scoreboard}/>
           <Route path = "/exit/private" component = {Exit}/>
-          <Route path = "/join/public" component={JoinRoom}/>
+          <Route path = "/join/public" component={JoinPublic}/>
           <Route component={Error}/>
         </Switch>
       </Router>

@@ -4,7 +4,7 @@ import { Table, Button } from 'react-bootstrap';
 import Header from "../../components/header";
 
 
-const JoinRoom = () => {
+const JoinPublic = () => {
   return(
     <>
       <Header/>
@@ -57,4 +57,4 @@ const JoinRoom = () => {
 
 }
 
-export default JoinRoom;
+export default JoinPublic;
