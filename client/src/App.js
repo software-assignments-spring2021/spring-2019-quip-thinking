@@ -37,6 +37,14 @@ const App = () => (
                 />}
           />
           <Route path = "/vote/private" component = {Vote}/>
+          <Route path = "/vote/private" render={({
+            location : {state : {prompt, firstQuip, secondQuip}}
+          }) => <Vote
+                  prompt={prompt}
+                  firstQuip={firstQuip}
+                  secondQuip={secondQuip}
+                />}
+          />
           <Route path = "/scoreboard/private" component = {Scoreboard}/>
           <Route path = "/exit/private" component = {Exit}/>
           <Route path = "/join/public" component={JoinPublic}/>
