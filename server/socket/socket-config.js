@@ -45,29 +45,38 @@ module.exports = function (io) {
 		});
 
 		//TODO: verify code to join private room
-		socket.on('join-private-room', function (msg, cb) {
-			console.log(`${socket.id} is joining a room`)
-			cb = cb || function () {};
-			// msg.code is room code
-			// msg.name is players name
-			if (msg.code) {
-				let roomCode = parseInt(msg.code)
-				if (currentPrivateRooms.hasOwnProperty(roomCode)) {
-					// if game exists add user
-					const players = (currentPrivateRooms[roomCode]).getPlayerNames();
-					console.log('Players ', players);
-					if ((currentPrivateRooms[roomCode]).addPlayer(socket.id, msg.name)) {
-						io.to(socket.id).emit('join-private-room', { msg: 'success', names: players, roomName: currentPrivateRooms[roomCode].roomName});
-					} else {
-						io.to(socket.id).emit('join-private-room', { msg: 'room full' });
-					}
-				}
-			} else {
-				io.to(socket.id).emit('join-private-room', { msg: 'code invalid', name:''});
-			} 
+		socket.on("join-private-room", function(msg, cb) {
+      console.log(`${socket.id} is joining a room`);
+      cb = cb || function() {};
+      // msg.code is room code
+      // msg.name is players name
+      if (msg.code) {
+        let roomCode = parseInt(msg.code);
+        if (currentPrivateRooms.hasOwnProperty(roomCode)) {
+          // if game exists add user
+          if (currentPrivateRooms[roomCode].addPlayer(socket.id, msg.name)) {
+            socket.broadcast.emit("join-private-room", {
+              msg: "success",
+              players: Object.values(currentPrivateRooms[roomCode].players).map(p => p.name),
+              roomName: currentPrivateRooms[roomCode].roomName
+            });
+            socket.emit("join-private-room", {
+              msg: "success",
+              players: Object.values(currentPrivateRooms[roomCode].players).map(p => p.name),
+              roomName: currentPrivateRooms[roomCode].roomName
+            });
+          } else {
+            socket.emit("join-private-room", { msg: "room full" });
+          }
+        }
+      } else {
+        socket.emit("join-private-room", {
+          msg: "code invalid",
+        });
+      }
 
-			cb(null, 'Done');
-		});
+      cb(null, "Done");
+    });
 
     socket.on("get-players", (msg, cb=() =>{}) => {
       const {roomCode} = msg;
