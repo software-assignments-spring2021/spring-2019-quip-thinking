@@ -9,7 +9,7 @@ class WaitingPrivate extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      players: [],
+      players: [this.props.playerName],
       errorText: "",
       prompts: [],
       round: 1
