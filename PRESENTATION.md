@@ -20,24 +20,24 @@
    - *Prior Experience* - took AIT
 5. **Jody Simpson**
    - *Year* - Senior
-   - *Interests* - 
-   - *Prior Experience* - took AIT
+   - *Interests* - Back End Development
+   - *Prior Experience* - took AIT and internship experience 
 
-## Team Roles
+## Team Roles (Jody)
 
 - **Product Owner and Scrum Master**
   - Everyone had a chance to be the product owner and scrum master once.
 - **Developer**
   - Everyone was a developer during every sprint.
-  - We split up the labor based upon who felt more comofortable working on certain features.
+  - We split up the labor based upon who felt more comfortable working on certain features.
     - If someone had more knowledge about one subject they would focus on the work involving that.
 
-## Project Summary
+## Project Summary (Larry)
 
 - **Quip Thinking**
   - Quip Thinking is a game based off of the popular game called Quiplash, originally made by the developers at Jackbox Games.
 
-- **Elevaotr Pitch**
+- **Elevator Pitch**
   - Quip Thinking is a game based off of the popular game called Quiplash, originally made by the developers at Jackbox Games.
   - The original game involves two people answering witty prompts and their friends voting on which answer they liked the most. 
   - Quip Thinking puts a new spin on the game to give users a fresh take.
@@ -45,14 +45,68 @@
   - They can join a public room or make their own private room with a room code to play with their friends.
   - Users can also add their own prompts (first vetted by us!) to our database of prompts.
 
-## Users
+## Users (Rebecca)
 
 - **Audience**
+  - We made this game for people of all ages. 
+  - It can be played and enjoyed by people everywhere.
 
-  Users
-Who are you making this for?
+- **Tendencies and Limitations**
+  - (to do)
 
-What tendencies and/or limitations does this audience have that you took into consideration when designing your project?
-What need does this fill?
-Have you done any user observation of your target audience using this project?
-Have you tested the project with your intended audience?
+- **What Need Does This Fill**
+  - (to do)
+
+- **User Observation**
+  - We have had people in the target age range play our game from start to finish.
+
+- **Testing**
+  - We have done in-person testing with our intended audience.  
+
+## The System (Disha)
+
+- **Software**
+  - (to do)
+
+- **Hardware**
+  - (to do)
+
+- **Libraries**
+  - (to do)
+
+- **Frameworks**
+  - (to do)
+
+## Challenges (Richard)
+
+- **Incomplete Use Cases**
+  - (to do)
+
+- **Expected Challenges**
+  - What: (to do)
+  - Did They Happen: (to do)
+
+- **Biggest Challenge**
+  - (to do)
+
+- **Overcoming Challenges**
+  - (to do)
+
+## Lessons Learned (Disha)
+
+- **Expected Amount of Work**
+  - (to do)
+
+- **New Software or Hardware**
+  - (to do)
+
+- **Takeaways**
+  - (to do)
+
+## The Future (Larry)
+
+- **Beyond the Classroom**
+  - (to do)
+
+- **Continued Work**
+  - (to do)
