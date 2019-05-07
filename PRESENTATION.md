@@ -52,13 +52,61 @@
   - It can be played and enjoyed by people everywhere.
 
 - **Tendencies and Limitations**
-  -
+  - (to do)
 
 - **What Need Does This Fill**
-  - 
+  - (to do)
 
 - **User Observation**
   - We have had people in the target age range play our game from start to finish.
 
 - **Testing**
   - We have done in-person testing with our intended audience.  
+
+## The System
+
+- **Software**
+  - (to do)
+
+- **Hardware**
+  - (to do)
+
+- **Libraries**
+  - (to do)
+
+- **Frameworks**
+  - (to do)
+
+## Challenges
+
+- **Incomplete Use Cases**
+  - (to do)
+
+- **Expected Challenges**
+  - What: (to do)
+  - Did They Happen: (to do)
+
+- **Biggest Challenge**
+  - (to do)
+
+- **Overcoming Challenges**
+  - (to do)
+
+## Lessons Learned
+
+- **Expected Amount of Work**
+  - (to do)
+
+- **New Software or Hardware**
+  - (to do)
+
+- **Takeaways**
+  - (to do)
+
+## The Future
+
+- **Beyond the Classroom**
+  - (to do)
+
+- **Continued Work**
+  - (to do)
