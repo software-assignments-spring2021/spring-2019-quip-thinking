@@ -10,6 +10,7 @@ import Vote from "./pages/games/Vote";
 import Exit from "./pages/games/Exit";
 import Scoreboard from "./pages/games/Scoreboard";
 import WaitingPrivate from './pages/waiting/waitingPrivate';
+import AnswerPrompts from './pages/games/AnswerPrompts';
 
 const App = () => (
   <>
@@ -29,6 +30,7 @@ const App = () => (
           />
           {/* <Route path = "/answer/private" component = {}/> */}
           <Route path = "/vote/private" component = {Vote}/>
+          <Route path = "/AnswerPrompts" component = {AnswerPrompts}/>
           <Route path = "/scoreboard/private" component = {Scoreboard}/>
           <Route path = "/exit/private" component = {Exit}/>
           <Route path = "/join/public" component={JoinPublic}/>

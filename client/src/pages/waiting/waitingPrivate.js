@@ -1,5 +1,6 @@
 import React from 'react';
 import './waiting.css';
+import "../games/Timer.js";
 import {Button} from 'react-bootstrap';
 import {withRouter} from 'react-router-dom'
 import socket, { getPlayers, subscribeToJoins, startGame } from '../../utils/api'
@@ -63,7 +64,7 @@ class WaitingPrivate extends React.Component{
           <div id="heading">
             <h1>{this.props.roomName}</h1>
             <h2 id="code">Room Code: {this.props.roomCode}</h2>
-            <h2 id="time">Timer: </h2>
+              <h2 id="time">Timer: <span id="timer"></span> </h2>
           </div>
           <div id="players">
             {players.map(p => (
