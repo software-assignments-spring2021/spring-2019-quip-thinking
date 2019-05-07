@@ -48,11 +48,17 @@
 ## Users
 
 - **Audience**
+  - We made this game for people of all ages. 
+  - It can be played and enjoyed by people everywhere.
 
-  Users
-Who are you making this for?
+- **Tendencies and Limitations**
+  -
 
-What tendencies and/or limitations does this audience have that you took into consideration when designing your project?
-What need does this fill?
-Have you done any user observation of your target audience using this project?
-Have you tested the project with your intended audience?
+- **What Need Does This Fill**
+  - 
+
+- **User Observation**
+  - We have had people in the target age range play our game from start to finish.
+
+- **Testing**
+  - We have done in-person testing with our intended audience.  
