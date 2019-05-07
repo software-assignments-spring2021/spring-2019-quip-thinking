@@ -49,17 +49,20 @@
   - It can be played and enjoyed by people everywhere
 
 - **Tendencies and Limitations**
-  - (to do)
+  - We expected our audience to have a tendency to want to play Quiplash whenever and wherever they wanted
+  - We would enable them to play without the limitation of a minimum number of people with them
 
 - **What Need Does This Fill**
   - Some people don't want to pay for the original game, as it comes in a package alongside other games
   - Quip Thinking accommodates playing a quick game by yourself by joining a public room as well as the traditional means of playing with a group of friends
 
 - **User Observation**
-  - We have had people in the target age range play our game from start to finish
+  - We have had people of different ages play our game
+  - We made iterative changes to our project based on our observations and their feedback
 
 - **Testing**
   - We have done in-person testing with our intended audience
+  - We tested each component as we went along to ensure that it was functional and aesthetically pleasing
 
 ## The System (Disha)
 
@@ -75,23 +78,30 @@
   - Standard Mac / PC Computers
 
 - **Most Time-Consuming Aspect**
-  - Connecting the Front End to the Back End
+  - Connecting the frontend to the backend
+  - We expected this to be straightforward so we saved it for the last sprint, but it turned out to be much more complicated than we thought (see challenges below)
 
 ## Challenges (Richard)
 
 - **Incomplete Use Cases**
-  - (to do)
+  - We didn't complete the use cases related to the public games
+    - Table of active public games that can be joined
+    - Creation of a public room that allows others to join
 
 - **Expected Challenges**
-  - What: (to do)
-  - Did They Happen: (to do)
+  - Expectation: We thought we'd have the most difficulty with the actual development of the game in regards to the frontend (many of us were rusty with React) and backend (only one member was comfortable with databases)
+  - Reality: Our expected challenges didn't actually occur due to the time we spent in Sprint 0 learning all of the information we were lacking; however, connecting the frontend and backend (learning Socket.IO) was very challenging as we didn't anticipate how much data we'd be passing back and forth
 
 - **Biggest Challenge**
   - Connecting the Front End to the Back End
   - Consistently working on the project with different schedules and obligations (Agile likely would've worked much better in the real world, where this "job" is a priority)
+  - It was difficult to learn other people's code since we all worked on our own things for the initial sprints
 
 - **Overcoming Challenges**
-  - (to do)
+  - We tried to overcome our challenges by having a few "hackathon" days, in which we all gathered to work on the project together for several hours
+  - Couldn't complete as much as we wanted due to time constraints
+  - Developed frontend and backend separately, then tried to link the two during the last spring
+    - This proved to be the hardest part of the entire project and would require much more time than 1 Sprint to complete (if we had known this ahead of time, we would've reallocated our time differently and began integrating frontend to backend compatibility from the start)
 
 ## Lessons Learned (Disha)
 
