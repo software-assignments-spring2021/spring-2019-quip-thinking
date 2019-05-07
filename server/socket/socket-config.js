@@ -81,7 +81,7 @@ module.exports = function (io) {
 
 		socket.on('start-game', function(msg, cb) {
 			cb = cb || function() {};
-			
+
 			// check that the minimum threshold is met
       // msg.code is room code
 			if (currentPrivateRooms.hasOwnProperty(msg.code)) {
@@ -117,9 +117,9 @@ module.exports = function (io) {
 								currentPrivateRooms[msg.code][roundStr+r] = {};
 								for (let j = start, k = 0; j < limit; j++, k++) {
 									currentPrivateRooms[msg.code][roundStr+r][prompts[j]] = {};
-								
-									//initialize pairs on this prompt with empty quote									
-									
+
+									//initialize pairs on this prompt with empty quote
+
 									//assign each pair a prompt
 									const p1 = (currentPrivateRooms[msg.code]).getPlayerName(pairs[k][0]);
 									const p2 = (currentPrivateRooms[msg.code]).getPlayerName(pairs[k][1]);
@@ -137,7 +137,7 @@ module.exports = function (io) {
 									(currentPrivateRooms[msg.code].players[pairs[k][1]]).addPrompt(prompts[j]);
 								}
 							}
-							
+
 							//put those assignments in an object in Game
 
 							//for each player, emit their prompts to repesctive client ids
@@ -151,12 +151,12 @@ module.exports = function (io) {
 							}
 					}).catch(err => console.log('ERROR resolving promise ', err));
 
-					//socket.emit('start-game', { start: 'true' }); 
+					//socket.emit('start-game', { start: 'true' });
 				} else {
 					socket.emit('start-game', { start: 'false', prompts: null });
 				}
 			} else {
-				socket.emit('start-game', { start: 'false', prompts: null});	
+				socket.emit('start-game', { start: 'false', prompts: null});
 			}
 
 			cb(null, 'Done');
@@ -171,11 +171,11 @@ module.exports = function (io) {
 				const prmpt = msg.prmpt;
 				const ans = msg.ans;
 				const round = roundStr + msg.round;
-	
+
 				if (currentPrivateRooms[roomCode]) {
 					if (currentPrivateRooms[roomCode][round]) {
 							console.log('Here is the code and round', roomCode, round, currentPrivateRooms[roomCode]);
- 
+
 							if (currentPrivateRooms[roomCode][round][prmpt]) {
 								const p = (currentPrivateRooms[roomCode]).getPlayerName(socket.id);
 
@@ -187,14 +187,14 @@ module.exports = function (io) {
 					} else {
 						io.to(socket.id).emit('submit-answer', 'fail2');
 					}
-				} else {	
+				} else {
 					io.to(socket.id).emit('submit-answer', 'fail3');
 				}
 
 			cb(null, 'Done');
 		});
 
-	
+
 		socket.on('end-round', function(msg, cb) {
 			cb = cb || function() {};
 
@@ -220,7 +220,7 @@ module.exports = function (io) {
 			currentPrivateRooms[roomCode].updateScore(playerId);
 
 			const players = Array.from(new Set(Object.keys(currentPrivateRooms[roomCode].players)));
-			
+
 			const scores = {};
 
 			for (let i = 0; i < players.length; i++) {
@@ -231,8 +231,8 @@ module.exports = function (io) {
 				const pScore = p.getScore();
 
 				scores[pName] = pScore;
-				
-			//	console.log("SENFING PROMPTS", qs);
+
+			//	console.log("SENDING PROMPTS", qs);
 			}
 
 			for (let i = 0; i < players.length; i++) {

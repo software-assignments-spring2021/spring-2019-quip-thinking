@@ -52,7 +52,7 @@
   - (to do)
 
 - **What Need Does This Fill**
-  - The original game comes in a package alongside other Jackbox games, which some people don't want to pay for.
+  - Some people don't want to pay for the original game, as it comes in a package alongside other games.
   - Quip Thinking accommodates playing a quick game by yourself by joining a public room as well as the traditional means of playing with a group of friends.
 
 - **User Observation**
@@ -69,7 +69,7 @@
   - Python (Web Scraping)
   - MongoDB, Express, React, Node.js (MERN Stack)
   - Bootstrap / jQuery
-  - Socket.io
+  - Socket.IO
 
 - **Hardware**
   - Standard Mac / PC Computers
@@ -111,4 +111,4 @@
 
 - **Continued Work**
   - There may be some legal ramifications preventing us from actually developing and releasing the game.
-  - Unexpected difficulties arose with interactive game design.
+  - Unexpected difficulties arose with computer networks and the Internet of Things.
