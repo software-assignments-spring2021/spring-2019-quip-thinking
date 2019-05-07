@@ -19,8 +19,6 @@ io.sockets.on("on", function(socket) {
 	});
 });
 
-// note - send end route 
-
 // var count = 90;
 
 // var counter = setInterval(timer, 1000);
