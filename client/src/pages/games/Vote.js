@@ -20,8 +20,8 @@ class Vote extends React.Component {
 
   // send vote to backend
   castVote() {
-    const { code } = this.props;
-    sendVote(this.state.playerID, code, this.state.chosenQuip);
+    const { roomCode } = this.props.roomCode;
+    sendVote(this.state.playerID, roomCode, this.state.chosenQuip);
   }
 
   // if user votes for the first quip
@@ -44,7 +44,7 @@ class Vote extends React.Component {
 
   // load the page with the prompts, first quip, and second quip
   componentDidMount(){
-    const { roomCode } = this.props
+    const { roomCode } = this.props.roomCode
     getInfo(roomCode, (prompts) => {
       this.setState({
         prompts: prompts,
