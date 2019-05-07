@@ -38,4 +38,10 @@ export const subscribeToJoins = (cb = () => {}) => {
     })
 }
 
+export const startGame = (roomCode, cb = () => {}) => {
+    socket.emit('start-game', { code: roomCode })
+    socket.on('start-game', output => {
+        cb(output)
+    })
+}
 export default socket

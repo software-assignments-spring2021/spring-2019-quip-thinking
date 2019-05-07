@@ -74,7 +74,7 @@ module.exports = function (io) {
 			cb = cb || function() {};
 			
 			// check that the minimum threshold is met
-			// msg.code is room code
+      // msg.code is room code
 			if (currentPrivateRooms.hasOwnProperty(msg.code)) {
 				//check if the number of players is at least 3
 				const num = (currentPrivateRooms[msg.code]).getNumberofPlayers();
@@ -131,7 +131,7 @@ module.exports = function (io) {
 								console.log('here in the for ', i);
 
 								const qs = (currentPrivateRooms[msg.code].players[currPlayers[i]]).getPrompts();
-								console.log("SENFING PROMPTS", qs);
+								console.log("SENDING PROMPTS", qs);
 								io.to(currPlayers[i]).emit('start-game', { start: 'true', prompts: qs});
 							}
 					}).catch(err => console.log('ERROR resolving promise ', err));

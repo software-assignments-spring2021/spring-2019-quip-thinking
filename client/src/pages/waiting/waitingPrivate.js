@@ -2,13 +2,14 @@ import React from 'react';
 import './waiting.css';
 import {Button} from 'react-bootstrap';
 import {withRouter} from 'react-router-dom'
-import socket, { getPlayers, subscribeToJoins } from '../../utils/api'
+import socket, { getPlayers, subscribeToJoins, startGame } from '../../utils/api'
 
 class WaitingPrivate extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      players: []
+      players: [],
+      errorText: ""
     }
     this.receivedPlayers.bind(this);
     subscribeToJoins((err, players) => {
@@ -18,9 +19,30 @@ class WaitingPrivate extends React.Component{
     })
   }
   receivedPlayers(players){
-    this.setState({players})
+    this.setState({players: players})
   }
 
+  // receivedPrompts(prompts){
+  //   this.setState({prompts: prompts})
+  // }
+  startPrivateGame(){
+    startGame(this.props.roomCode, res => {
+      const {msg, prompts} = res
+      if(msg === 'true'){
+        this.setState({errorText: ""})
+        console.log("YAY, START THE GAME WITH: " + prompts);
+        // this.props.history.push({
+        //   pathname: "/answer/private",
+        //   state: {
+        //     prompts
+        //   }
+        // })
+      }
+      else{
+        this.setState({errorText: "You either don't have enough players or are sending an incorrect code. Please try again."});
+      }
+    })
+  }
   componentDidMount(){
     const { roomCode } = this.props
     getPlayers(roomCode, (players) => {
@@ -30,8 +52,8 @@ class WaitingPrivate extends React.Component{
   }
   componentWillUnmount(){
     socket.off('join-private-room')
+    socket.off('start-game')
   }
-
   render(){
     const { players } = this.state
     return(
@@ -47,7 +69,8 @@ class WaitingPrivate extends React.Component{
               <h3 key={p}>Player Name: {p}</h3>
             ))}
           </div>
-          <Button variant="primary" type="submit">Start the Game!</Button>
+          <div>{this.state.errorText}</div>
+          <Button variant="primary" type="submit" onClick={this.startPrivateGame.bind(this)}>Start the Game!</Button>
         </div>
       </>
     )
