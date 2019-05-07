@@ -4,10 +4,6 @@ import "./game.css";
 import io from 'socket.io-client'
 import { answerPrompt } from '../../utils/api'
 
-
-
-
-
 export class AnswerPrompts extends React.Component{
   constructor(props){
     super(props);
@@ -24,6 +20,7 @@ export class AnswerPrompts extends React.Component{
 
 
     };
+    console.log(this.props.prompts)
   }
 
   fieldoneChange(e){
@@ -47,10 +44,10 @@ export class AnswerPrompts extends React.Component{
   showPrompt(number){
     return(
       <div>
-        {this.state.prompts[(this.state.round*2)-1]}
+        {this.props.prompts[(this.state.round*2)-1]}
         <form onSubmit={this.answerPrompt.bind(this)}>
         <input name="answer" type="text" onChange = {this.fieldoneChange.bind(this)}  />
-        {this.state.prompts[this.state.round*2-2]}
+        {this.props.prompts[this.state.round*2-2]}
         <input name="answer" type="text" onChange = {this.fieldtwoChange.bind(this)} />
 
 
@@ -62,7 +59,7 @@ export class AnswerPrompts extends React.Component{
   }
 
   promptsFinished(){
-    let prompts = this.state.prompts;
+    let prompts = this.props.prompts;
     if(this.prompts.accumulator < prompts.length){
       return true;
     }

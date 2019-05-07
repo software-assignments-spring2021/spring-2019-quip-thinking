@@ -1,6 +1,6 @@
 import React from 'react';
 import './waiting.css';
-import "../games/Timer.js";
+// import "../games/Timer.js";
 import {Button} from 'react-bootstrap';
 import {withRouter} from 'react-router-dom'
 import socket, { getPlayers, subscribeToJoins, startGame } from '../../utils/api'
@@ -33,6 +33,14 @@ class WaitingPrivate extends React.Component{
         // console.log("YAY, START THE GAME WITH: " + prompts);
         this.setState({errorText: "You either don't have enough players or are sending an incorrect code. Please try again."});
       }
+      else{
+        this.props.history.push({
+          pathname: "/answer/private",
+          state: {
+            prompts
+          }
+        })
+      }
     })
   }
   componentDidMount(){
@@ -44,12 +52,6 @@ class WaitingPrivate extends React.Component{
       const {msg, prompts} = res
       this.setState({prompts: prompts})
       // console.log("YAY, START THE GAME WITH: " + prompts);
-      this.props.history.push({
-        pathname: "/answer/private",
-        state: {
-          prompts
-        }
-      })
     })
   }
   componentWillUnmount(){

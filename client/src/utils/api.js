@@ -43,6 +43,7 @@ export const startGame = (roomCode, cb = () => {}) => {
     socket.on('start-game', output => {
         cb(output)
     })
+}
 
 export const answerPrompt = ( round, roomcode, answer, prompt, cb = () => {}) => {
     console.log('happening');

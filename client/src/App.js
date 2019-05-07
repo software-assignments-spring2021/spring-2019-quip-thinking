@@ -28,9 +28,8 @@ const App = () => (
                   playerName={playerName}
                 />}
           />
-          {/* <Route path = "/answer/private" component = {}/> */}
+          <Route path = "/answer/private" component = {AnswerPrompts}/>
           <Route path = "/vote/private" component = {Vote}/>
-          <Route path = "/AnswerPrompts" component = {AnswerPrompts}/>
           <Route path = "/scoreboard/private" component = {Scoreboard}/>
           <Route path = "/exit/private" component = {Exit}/>
           <Route path = "/join/public" component={JoinPublic}/>
