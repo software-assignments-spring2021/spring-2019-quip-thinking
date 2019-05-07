@@ -71,7 +71,6 @@ class Vote extends React.Component {
     </Jumbotron>
     <Row>
       <Col>
-
         <Button variant="light" onClick={this.incrementQuip1()}> {this.state.firstQuip} </Button>
       </Col>
       <Col>
