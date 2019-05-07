@@ -13,17 +13,21 @@ export class AnswerPrompts extends React.Component{
       prompts: ['question a ', 'question b'],
       accumulator: 0,
       answer: [],
+      time: 400,
       finished: false,
       answerOne: '',
       answerTwo: '',
+
       round: 0,
       roomCode: 0,
+
     };
     this.answersSent.bind(this);
     console.log(this.props.prompts)
 
 
     updateTimer(res=>{
+
      let times = res.countdown;
      console.log(times, 'yay');
      this.setState({time: times});
@@ -33,7 +37,11 @@ export class AnswerPrompts extends React.Component{
        startVote(this.state.round, this.state.roomCode);
      }
 
-   });
+
+      if(this.state.time === 1){
+        this.setState({timeOut:true})
+      } 
+    });
 
   }
 
@@ -88,6 +96,7 @@ export class AnswerPrompts extends React.Component{
 
   componentDidMount(){
     startTimer();
+
     this.setState({
       round: this.props.round,
       roomCode:this.props.roomCode,
@@ -108,6 +117,7 @@ export class AnswerPrompts extends React.Component{
           prompts,
         }
       })
+
 
 
     })
