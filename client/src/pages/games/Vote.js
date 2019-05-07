@@ -6,17 +6,21 @@ import socket, { sendVote, getInfo } from '../../utils/api'
 import { withRouter } from 'react-router-dom';
 
 class Vote extends React.Component {
+  // initialize the state of the page
   constructor(props) {
     super(props);
     this.state = {
+      // quip1 and quip2 are the votes
       quip1: 0,
       quip2: 0,
       prompt: "",
+      // first and second quips are the actual words
       firstQuip: "",
       secondQuip: "",
     }
   }
 
+  // send vote to backend
   castVote() {
     const { quip1, quip2 } = this.state;
     if (quip1 === 1) {
@@ -26,6 +30,7 @@ class Vote extends React.Component {
     }
   }
 
+  // if user votes for the first quip
   incrementQuip1() {
     this.setState({
       quip1: 1,
@@ -33,6 +38,7 @@ class Vote extends React.Component {
     this.castVote()
   }
 
+  // if user votes for the second quip
   incrementQuip2() {
     this.setState({
       quip2: 1,
@@ -40,6 +46,7 @@ class Vote extends React.Component {
     this.castVote()
   }
 
+  // load the page with the prompt, first quip, and second quip
   componentDidMount(){
     const { roomCode } = this.props
     getInfo(roomCode, (prompt, firstQuip, secondQuip) => {
@@ -52,23 +59,24 @@ class Vote extends React.Component {
 
   }
 
+  // cut off connection with end-round
   componentWillUnmount(){
     socket.off('end-round')
   }
 
+  // call above methods when corresponding button is clicked
   render() {
     return(
   <>
     <div className="create">
     <Header/>
     <Jumbotron>
-      <h1>Round #</h1>
+      <h1>Round {this.props.round}</h1>
       <p>{this.state.prompt}</p>
     </Jumbotron>
     <Row>
       <Col>
-        {/* we need to figure out how to hold button animation until all
-          user votes go through or time runs out */}
+
         <Button variant="light" onClick={this.incrementQuip1()}> {this.state.firstQuip} </Button>
       </Col>
       <Col>

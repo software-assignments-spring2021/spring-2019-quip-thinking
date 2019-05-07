@@ -11,7 +11,7 @@ class CreatePrivate extends React.Component{
       roomName: "",
       playerName: "",
     };
-    
+
   }
   //STORES ROOM NAME AND PLAYER NAME IN STATE
   handleRoomChange(e){
@@ -32,7 +32,7 @@ class CreatePrivate extends React.Component{
         }
       })
     })
-    
+
   }
 
   render(){
@@ -42,9 +42,10 @@ class CreatePrivate extends React.Component{
           <h1>Create a Private Room</h1>
           <Form style={{width: '50%'}}>
             <Form.Label>Room Name</Form.Label>
-            <Form.Control placeholder="Enter a room name" onChange={this.handleRoomChange.bind(this)}/>
+            <Form.Control placeholder="Enter Room Name" onChange={this.handleRoomChange.bind(this)}/>
+            <br/>
             <Form.Label>Player Name</Form.Label>
-            <Form.Control placeholder="Enter your player name" onChange={this.handleNameChange.bind(this)}/>
+            <Form.Control placeholder="Enter Player Name" onChange={this.handleNameChange.bind(this)}/>
           </Form>
           <br></br>
           <Button onClick={this.submitForm.bind(this)}>Submit</Button>

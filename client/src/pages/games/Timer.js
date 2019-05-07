@@ -30,7 +30,7 @@ io.sockets.on("on", function(socket) {
 // 		clearInterval(counter);
 // 		return;
 // 	}
-	
+
 // }
 
 // var time = 90;
@@ -43,7 +43,7 @@ io.sockets.on("on", function(socket) {
 // 		clearInterval(timer);
 
 // 		return;
-		
+
 // 		// document.getElementById("countdown").innerHTML = "time's up!";
 // 	}
 
@@ -54,7 +54,7 @@ io.sockets.on("on", function(socket) {
 // 	return(
 // 			<div className="timer">
 
-// 				<p> Time Left: </p>			
+// 				<p> Time Left: </p>
 
 // 				<Row>
 
