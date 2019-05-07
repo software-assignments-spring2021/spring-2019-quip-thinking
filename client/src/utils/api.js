@@ -38,6 +38,18 @@ export const subscribeToJoins = (cb = () => {}) => {
     })
 }
 
+
+export const sendVote = (vote, cb = () => {}) => {
+    socket.emit('vote', {vote});
+}
+
+export const getInfo = (roomCode, cb = () => {}) => {
+    socket.on('end-round', ({prompt, quip1, quip2}) => {
+        cb(prompt, quip1, quip2)
+    })
+}
+
+
 export const startGame = (roomCode, cb = () => {}) => {
     socket.emit('start-game', { code: roomCode })
     socket.on('start-game', output => {
@@ -50,5 +62,6 @@ export const answerPrompt = ( round, roomcode, answer, prompt, cb = () => {}) =>
     socket.emit('answerPrompt', {round: round, roomcode: roomcode, answer: answer , prompt: prompt})
 
 }
+
 
 export default socket

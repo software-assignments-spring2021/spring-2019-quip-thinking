@@ -54,6 +54,7 @@ class WaitingPrivate extends React.Component{
       // console.log("YAY, START THE GAME WITH: " + prompts);
     })
   }
+  
   componentWillUnmount(){
     socket.off('join-private-room')
     socket.off('start-game')
