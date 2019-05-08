@@ -38,6 +38,16 @@ export const subscribeToJoins = (cb = () => {}) => {
     })
 }
 
+export const sendVote = (id, code, quip,  cb = () => {}) => {
+    socket.emit('end-vote', {id, code, quip});
+}
+
+export const getInfo = (roomCode, cb = () => {}) => {
+    socket.on('start-vote', ({prompts}) => {
+        cb(prompts);
+    })
+}
+
 export const startGame = (roomCode, cb = () => {}) => {
     socket.emit('start-game', { code: roomCode });
 }
@@ -52,25 +62,15 @@ export const answerPrompt = ( round, roomCode, answer, prompt, cb = () => {}) =>
     socket.emit('submit-answer', {round: round, roomCode: roomCode, ans: answer , prmpt: prompt})
 }
 
-// export const answersSuccessful = (cb = () => {}) => {
-//     socket.on('submit-answer', msg => {
-//         cb(msg)
-//     })
-// }
+export const answersSuccessful = (cb = () => {}) => {
+    socket.on('submit-answer', msg => {
+        cb(msg)
+    })
+}
 
 export const startTimer = ( cb = () => {}) => {
     socket.emit('reset', {})
 
-}
-
-export const sendVote = (id, code, quip,  cb = () => {}) => {
-    socket.emit('end-vote', {id, code, quip});
-}
-
-export const getInfo = (roomCode, cb = () => {}) => {
-    socket.on('start-vote', ({prompts}) => {
-        cb(prompts);
-    })
 }
 
 export const startVote = (round, roomCode, cb = () => {}) => {
@@ -91,5 +91,4 @@ export const updateTimer = ( cb = () => {}) => {
         cb(msg);
   })
 }
-
 export default socket

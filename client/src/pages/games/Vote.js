@@ -51,9 +51,9 @@ class Vote extends React.Component {
 
   // load the page with the prompts, first quip, and second quip
   componentDidMount(){
-    const  roomCode  = this.props.roomCode
+    // const roomCode = this.props.roomCode
     const prompts = this.props.prompts
-    console.log(roomCode);
+    // console.log(roomCode);
     console.log(prompts);
 
     let promptArray = [];
@@ -70,10 +70,10 @@ class Vote extends React.Component {
     console.log(promptArray);
     console.log(quipArray);
 
-      this.setState({
-        prompts: promptArray,
-        quip: quipArray,
-      });
+    this.setState({
+      prompts: promptArray,
+      quip: quipArray,
+    });
 
     for (var [key1, key2] in promptArray[this.state.current]) {
       this.setState({
@@ -95,11 +95,11 @@ class Vote extends React.Component {
         <h1 id="showprompt">{this.state.prompts[accumulator-1]}</h1>
         <div id="quips">
           <div id="firstquip" class="quip">
-            {this.state.quip[this.state.accumulator*2-2]}
+            <p>{this.state.quip[this.state.accumulator*2-2]}</p>
             <button>Vote</button>
           </div>
           <div id="secondquip" class="quip">
-            {this.state.quip[this.state.accumulator*2-1]}
+            <p>{this.state.quip[this.state.accumulator*2-1]}</p>
             <button>Vote</button>
           </div>
         </div>
