@@ -1,7 +1,5 @@
 import React from "react";
 import "./game.css";
-import { Row, Col, Button, Jumbotron } from "react-bootstrap";
-import Header from "../../components/header";
 import socket, { sendVote, getInfo } from '../../utils/api'
 import { withRouter } from 'react-router-dom';
 

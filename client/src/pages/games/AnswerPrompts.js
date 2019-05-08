@@ -31,7 +31,7 @@ export class AnswerPrompts extends React.Component{
      let times = res.countdown;
      console.log(times, 'yay');
      this.setState({time: times});
-     if(times == 1){
+     if(times === 1){
        console.log("timer hit 0");
        console.log(this.roomCode);
        startVote(this.state.round, this.state.roomCode);
@@ -103,7 +103,7 @@ export class AnswerPrompts extends React.Component{
     })
     gotoVote(res => {
       const {round, prompts} = res
-      const {start} = res
+      // const {start} = res
       const roomCode=this.state.roomCode;
 
       console.log("TRYING TO SEND TO NEXT PAGE")
