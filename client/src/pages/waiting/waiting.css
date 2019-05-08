@@ -9,11 +9,21 @@
     padding-right:10%;
 }
 
-#heading{
-    justify-content: space-between;
-    flex-direction: row;
+#roomName{
+    font-size: 4em;
+    padding:20px;
+    background-color: lightblue;
+    border-radius:25px;
+    border: 5px dashed lightseagreen;
 }
 
+#code{
+    padding: 10px;
+    font-size: 2em;
+    text-align: center;
+}
 #players{
+    padding: 10px;
     justify-content: space-around;
+    font-size: 1.5em;
 }

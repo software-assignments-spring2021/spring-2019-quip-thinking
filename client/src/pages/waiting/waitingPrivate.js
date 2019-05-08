@@ -22,8 +22,6 @@ class WaitingPrivate extends React.Component{
     })
     this.receivedPrompts.bind(this);
   }
-
-
   
   receivedPlayers(players){
     this.setState({players: players})
@@ -38,6 +36,7 @@ class WaitingPrivate extends React.Component{
   receivedPrompts(prompts){
     this.setState({prompts: prompts})
   }
+  // mount components
   componentDidMount(){
     const { roomCode } = this.props
     getPlayers(roomCode, (players) => {
@@ -47,6 +46,7 @@ class WaitingPrivate extends React.Component{
     getPrompts(this.props.roomCode, res => {
       const {start, prompts} = res
       const round=this.state.round;
+      //if there are enough players and the code is correct, send to next page
       if(start === "true"){
         this.receivedPrompts(prompts);
         this.props.history.push({
@@ -63,7 +63,7 @@ class WaitingPrivate extends React.Component{
       }
     })
   }
-
+  //unmount components
   componentWillUnmount(){
     socket.off('join-private-room')
     socket.off('start-game')
@@ -75,13 +75,13 @@ class WaitingPrivate extends React.Component{
       <>
         <div id="waitingPrivate">
           <div id="heading">
-            <h1>{this.props.roomName}</h1>
-            <h2 id="code">Room Code: {this.props.roomCode}</h2>
-              <h2 id="time">Timer: <span id="timer"></span> </h2>
+            <h1 id="roomName">{this.props.roomName}</h1>
+            <p id="code">Room Code: {this.props.roomCode}</p>
+              {/* <p id="time">Timer: <span id="timer"></span> </p> */}
           </div>
           <div id="players">
             {players.map(p => (
-              <h3 key={p}>Player Name: {p}</h3>
+              <p key={p}>Player Name: {p}</p>
             ))}
           </div>
           <div>{this.state.errorText}</div>

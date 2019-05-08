@@ -17,11 +17,6 @@ class Vote extends React.Component {
       quip: [],
       finished: false,
       accumulator: 1,
-
-
-
-
-
     }
   }
 
@@ -82,8 +77,6 @@ class Vote extends React.Component {
         quip: quipArray,
       });
 
-
-
     for (var [key1, key2] in promptArray[this.state.current]) {
       this.setState({
         idQuipArray: [[key1, promptArray[this.state.current].key1], [key2, promptArray[this.state.current].key2]],
@@ -96,14 +89,7 @@ class Vote extends React.Component {
   componentWillUnmount() {
     socket.off('end-round')
   }
-
   showPrompt(accumulator){
-
-
-
-
-
-
 
     return(
       <div>
@@ -114,23 +100,16 @@ class Vote extends React.Component {
       <div> </div>
       {this.state.quip[this.state.accumulator*2-1]}
       <button>Vote</button>
-
-
-
       </div>
     )
-
   }
-
   // call above methods when corresponding button is clicked
   render() {
     return(
   <>
     <div className="create">
         Time to vote
-
         { this.state.finished ?  'Waiting for other players': this.showPrompt(this.state.accumulator)}
-
     </div>
   </>
     )

@@ -38,16 +38,6 @@ export const subscribeToJoins = (cb = () => {}) => {
     })
 }
 
-export const sendVote = (id, code, quip,  cb = () => {}) => {
-    socket.emit('end-vote', {id, code, quip});
-}
-
-export const getInfo = (roomCode, cb = () => {}) => {
-    socket.on('start-vote', ({prompts}) => {
-        cb(prompts);
-    })
-}
-
 export const startGame = (roomCode, cb = () => {}) => {
     socket.emit('start-game', { code: roomCode });
 }
@@ -74,6 +64,16 @@ export const startTimer = ( cb = () => {}) => {
 
 }
 
+export const sendVote = (id, code, quip,  cb = () => {}) => {
+    socket.emit('end-vote', {id, code, quip});
+}
+
+export const getInfo = (roomCode, cb = () => {}) => {
+    socket.on('start-vote', ({prompts}) => {
+        cb(prompts);
+    })
+}
+
 export const startVote = (round, roomCode, cb = () => {}) => {
   console.log("emitting start vote");
     socket.emit('start-vote', {roomCode: roomCode, round: round});
@@ -86,13 +86,11 @@ export const gotoVote = ( cb = () => {}) => {
     })
 }
 
-
-
-
 export const updateTimer = ( cb = () => {}) => {
     socket.on('timer',msg => {
       console.log(msg.countdown);
         cb(msg);
   })
 }
+
 export default socket
