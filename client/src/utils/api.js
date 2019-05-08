@@ -52,12 +52,11 @@ export const answerPrompt = ( round, roomCode, answer, prompt, cb = () => {}) =>
     socket.emit('submit-answer', {round: round, roomCode: roomCode, ans: answer , prmpt: prompt})
 }
 
-export const answersSuccessful = (cb = () => {}) => {
-    socket.on('submit-answer', msg => {
-        cb(msg)
-    })
-}
-
+// export const answersSuccessful = (cb = () => {}) => {
+//     socket.on('submit-answer', msg => {
+//         cb(msg)
+//     })
+// }
 
 export const startTimer = ( cb = () => {}) => {
     socket.emit('reset', {})

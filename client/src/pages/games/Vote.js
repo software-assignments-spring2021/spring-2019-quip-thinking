@@ -87,35 +87,36 @@ class Vote extends React.Component {
   componentWillUnmount() {
     socket.off('end-round')
   }
-  showPrompt(accumulator){
 
+  showPrompt(accumulator){
     return(
       <div>
-      Vote for the funniest quip.
-      <div>{this.state.prompts[accumulator-1]}</div>
-      {this.state.quip[this.state.accumulator*2-2]}
-      <button>Vote</button>
-      <div> </div>
-      {this.state.quip[this.state.accumulator*2-1]}
-      <button>Vote</button>
+        <h1>Vote for the funniest quip.</h1>
+        <h1 id="showprompt">{this.state.prompts[accumulator-1]}</h1>
+        <div id="quips">
+          <div id="firstquip" class="quip">
+            {this.state.quip[this.state.accumulator*2-2]}
+            <button>Vote</button>
+          </div>
+          <div id="secondquip" class="quip">
+            {this.state.quip[this.state.accumulator*2-1]}
+            <button>Vote</button>
+          </div>
+        </div>
       </div>
     )
   }
   // call above methods when corresponding button is clicked
   render() {
     return(
-  <>
-    <div className="create">
-        Time to vote
-        { this.state.finished ?  'Waiting for other players': this.showPrompt(this.state.accumulator)}
-    </div>
-  </>
+      <>
+        <div className="create">
+          {/* Time to vote */}
+          { this.state.finished ?  'Waiting for other players': this.showPrompt(this.state.accumulator)}
+        </div>
+      </>
     )
   }
-
 }
-
-
-
 
 export default withRouter(Vote);
