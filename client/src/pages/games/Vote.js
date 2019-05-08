@@ -21,13 +21,17 @@ class Vote extends React.Component {
   // send vote to backend
   castVote() {
     const { roomCode } = this.props.roomCode;
-    sendVote(this.state.playerID, roomCode, this.state.chosenQuip);
+    console.log("CASTING MY VOTE");
+    console.log("PLAYERID: ", this.state.playerID);
+    console.log("ROOM CODE: ", roomCode);
+    // sendVote(this.state.playerID, roomCode, this.state.chosenQuip);
+    sendVote(this.state.playerID, roomCode);
   }
 
   // if user votes for the first quip
   chooseQuip1() {
     this.setState({
-      chosenQuip: this.state.idQuipArray[0][1],
+      // chosenQuip: this.state.idQuipArray[0][1],
       playerID: this.state.idQuipArray[0][0],
     });
     this.castVote()
@@ -36,7 +40,7 @@ class Vote extends React.Component {
   // if user votes for the second quip
   chooseQuip2() {
     this.setState({
-      chosenQuip: this.state.idQuipArray[1][1],
+      // chosenQuip: this.state.idQuipArray[1][1],
       playerID: this.state.idQuipArray[1][0],
     });
     this.castVote()
@@ -67,7 +71,7 @@ class Vote extends React.Component {
       }
     }
 
-    console.log(promptArray);
+    console.log("CURRENT PROMPT ARRY", promptArray);
     console.log(quipArray);
 
     this.setState({
@@ -81,6 +85,7 @@ class Vote extends React.Component {
         current: this.state.current + 1,
       });
     }
+    console.log(this.state.idQuipArray);
   }
 
   // cut off connection with end-round
@@ -96,11 +101,11 @@ class Vote extends React.Component {
         <div id="quips">
           <div id="firstquip" class="quip">
             <p>{this.state.quip[this.state.accumulator*2-2]}</p>
-            <button>Vote</button>
+            <button onClick={this.chooseQuip1.bind(this)}>Vote</button>
           </div>
           <div id="secondquip" class="quip">
             <p>{this.state.quip[this.state.accumulator*2-1]}</p>
-            <button>Vote</button>
+            <button onClick={this.chooseQuip2.bind(this)}>Vote</button>
           </div>
         </div>
       </div>
@@ -111,7 +116,6 @@ class Vote extends React.Component {
     return(
       <>
         <div className="create">
-          {/* Time to vote */}
           { this.state.finished ?  'Waiting for other players': this.showPrompt(this.state.accumulator)}
         </div>
       </>
