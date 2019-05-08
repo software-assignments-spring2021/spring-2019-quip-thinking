@@ -1,14 +1,36 @@
 .create {
     display: flex;
     align-items: center;
-    /* justify-content: space-evenly;
-    flex-direction: row; */
     width: 100%;
     height: 100vh;
     text-align: center;
-    /* background-color: rgb(166, 112, 216); */
     padding-top: 70px;
     padding-left: 3%;
     padding-right: 3%;
     padding-bottom: 3%;
+}
+h1{
+    margin: 20px;
+}
+#showprompt{
+    font-size: 2em;
+    padding:20px;
+    background-color: lightblue;
+    border-radius:25px;
+    border: 5px dashed lightseagreen;
+    text-align: center;
+}
+#quips{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.quip{
+    padding:10px;
+    background-color: bisque;
+    border:3px solid black;
+    border-radius:25px;
+    min-width:200px;
+    min-height:200px;
+    font-size:1.5em;
 }

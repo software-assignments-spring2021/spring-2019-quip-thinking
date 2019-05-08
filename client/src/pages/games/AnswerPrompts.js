@@ -3,7 +3,7 @@ import React from "react";
 import "./game.css";
 //import io from 'socket.io-client'
 import {withRouter} from 'react-router-dom'
-import socket, { answerPrompt , answersSuccessful, startTimer, updateTimer, startVote, gotoVote} from '../../utils/api'
+import socket, { answerPrompt , startTimer, updateTimer, startVote, gotoVote} from '../../utils/api'
 
 export class AnswerPrompts extends React.Component{
   constructor(props){
@@ -20,7 +20,6 @@ export class AnswerPrompts extends React.Component{
 
       round: 0,
       roomCode: 0,
-
     };
     this.answersSent.bind(this);
     console.log(this.props.prompts)
@@ -36,17 +35,12 @@ export class AnswerPrompts extends React.Component{
        console.log(this.roomCode);
        startVote(this.state.round, this.state.roomCode);
      }
-
-
       if(this.state.time === 1){
         this.setState({timeOut:true})
       } 
     });
 
   }
-
-
-
 
   fieldoneChange(e){
     this.setState({answerOne: e.target.value});
@@ -58,8 +52,6 @@ export class AnswerPrompts extends React.Component{
 
   answerPrompt(e){
     e.preventDefault();
-    // this.setState({finished: true});
-    //console.log(this.state.finished);
     answerPrompt(this.props.round, this.props.roomCode, this.state.answerOne, this.props.prompts[(this.props.round*2)-2]);
     answerPrompt(this.props.round, this.props.roomCode, this.state.answerTwo, this.props.prompts[(this.props.round*2)-1]);
     this.setState({finished: true});
@@ -92,8 +84,6 @@ export class AnswerPrompts extends React.Component{
     this.setState({finished: true});
   }
 
-
-
   componentDidMount(){
     startTimer();
 
@@ -103,7 +93,6 @@ export class AnswerPrompts extends React.Component{
     })
     gotoVote(res => {
       const {round, prompts} = res
-      // const {start} = res
       const roomCode=this.state.roomCode;
 
       console.log("TRYING TO SEND TO NEXT PAGE")
@@ -117,9 +106,6 @@ export class AnswerPrompts extends React.Component{
           prompts,
         }
       })
-
-
-
     })
 
   }
@@ -132,8 +118,8 @@ export class AnswerPrompts extends React.Component{
     return(
       <>
         <div className="create">
-        {this.state.time}
-        { this.state.finished ?  'Waiting for other players': this.showPrompt(this.state.accumulator)}
+          <h2>Time: {this.state.time}</h2>
+          <p>{this.state.finished ?  'Waiting for other players': this.showPrompt(this.state.accumulator)}</p>
         </div>
       </>
     )
