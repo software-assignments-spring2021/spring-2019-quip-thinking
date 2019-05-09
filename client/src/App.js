@@ -7,7 +7,6 @@ import JoinPublic from "./pages/join/JoinPublic";
 import CreatePrivate from "./pages/create/CreatePrivate";
 import Error from "./pages/error/Error";
 import Vote from "./pages/games/Vote";
-import Exit from "./pages/games/Exit";
 import Scoreboard from "./pages/games/Scoreboard";
 import WaitingPrivate from './pages/waiting/waitingPrivate';
 import AnswerPrompts from './pages/games/AnswerPrompts';
@@ -54,7 +53,6 @@ const App = () => (
 
                 />}
           />
-          <Route path = "/exit/private" component = {Exit}/>
           <Route path = "/join/public" component={JoinPublic}/>
           <Route component={Error}/>
         </Switch>
