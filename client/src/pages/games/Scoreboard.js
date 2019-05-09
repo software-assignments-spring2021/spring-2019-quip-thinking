@@ -1,6 +1,7 @@
 import React from 'react';
 import './game.css';
 import { Alert, ListGroup } from 'react-bootstrap';
+
 // import socket, { endVote, startTimer } from '../../utils/api';
 import { withRouter } from 'react-router-dom';
 
@@ -31,7 +32,6 @@ class Scoreboard extends React.Component {
       i++;
     }
     return winners;
-  }
 
   render() {
     const scores = this.props.scores || {"larry": 10, "becca": 1000, "ham": 20, "richie": 1, "jody": 1000};
