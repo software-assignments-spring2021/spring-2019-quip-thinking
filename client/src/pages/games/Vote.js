@@ -1,6 +1,6 @@
 import React from "react";
 import "./game.css";
-import socket, { sendVote, getInfo } from '../../utils/api'
+import socket, { sendVote, getInfo, updateTimer, startTimer } from '../../utils/api'
 import { withRouter } from 'react-router-dom';
 
 class Vote extends React.Component {
@@ -10,51 +10,97 @@ class Vote extends React.Component {
     this.state = {
       current: 0,
       prompts: [],
-      playerID: undefined,
+      playerID: '',
       chosenQuip: "",
       quip: [],
       finished: false,
       accumulator: 1,
+      playerIds: [],
+      times: 0,
     }
+
+
+
+    updateTimer(res=>{
+
+     let times = res.countdown;
+     console.log(times, 'yay');
+     this.setState({times: times});
+
+    });
   }
 
+
+
   // send vote to backend
-  castVote() {
-    const { roomCode } = this.props.roomCode;
+  castVote(id) {
+
     console.log("CASTING MY VOTE");
     console.log("PLAYERID: ", this.state.playerID);
-    console.log("ROOM CODE: ", roomCode);
+
+    this.setState({
+      // chosenQuip: this.state.idQuipArray[0][1],
+      finished: true,
+    });
+    console.log(id);
+    console.log(this.props.roomCode);
     // sendVote(this.state.playerID, roomCode, this.state.chosenQuip);
-    sendVote(this.state.playerID, roomCode);
+    sendVote(id, this.props.roomCode);
   }
 
   // if user votes for the first quip
   chooseQuip1() {
+    console.log("hi hi ");
+
+    let boom = this.state.prompts[this.state.accumulator-1]
+    let vote = this.props.prompts;
+    console.log('this is object keys');
+    console.log(Object.keys(vote));
+    console.log(vote[boom]);
+    let id = [];
+    for(var key in vote[boom]){
+      id.push(key)
+    }
+
+    console.log(id[0])
+
+
     this.setState({
       // chosenQuip: this.state.idQuipArray[0][1],
-      playerID: this.state.idQuipArray[0][0],
+      playerID: id[0],
     });
-    this.castVote()
+    this.castVote(id[0])
   }
 
   // if user votes for the second quip
   chooseQuip2() {
+    console.log("hi hi ");
+
+    let boom = this.state.prompts[this.state.accumulator-1]
+    let vote = this.props.prompts;
+    console.log('this is object keys');
+    console.log(Object.keys(vote));
+    console.log(vote[boom]);
+    let id = [];
+    for(var key in vote[boom]){
+      id.push(key)
+    }
+
+    console.log(id[1])
+
     this.setState({
-      // chosenQuip: this.state.idQuipArray[1][1],
-      playerID: this.state.idQuipArray[1][0],
+      // chosenQuip: this.state.idQuipArray[0][1],
+      playerID: id[1],
     });
-    this.castVote()
+    this.castVote(id[1])
+
   }
 
-  addAccumulator(){
-    let temp = this.state.accumlator+1;
-    this.setState({
-      accumulator: temp,
-    });
-  }
+
 
   // load the page with the prompts, first quip, and second quip
   componentDidMount(){
+    startTimer();
     // const roomCode = this.props.roomCode
     const prompts = this.props.prompts
     // console.log(roomCode);
@@ -96,6 +142,7 @@ class Vote extends React.Component {
   showPrompt(accumulator){
     return(
       <div>
+
         <h1>Vote for the funniest quip.</h1>
         <h1 id="showprompt">{this.state.prompts[accumulator-1]}</h1>
         <div id="quips">
@@ -115,9 +162,13 @@ class Vote extends React.Component {
   render() {
     return(
       <>
+        <div><h2>Time: {this.state.times}</h2></div>
         <div className="create">
           { this.state.finished ?  'Waiting for other players': this.showPrompt(this.state.accumulator)}
         </div>
+        <div><h2>Time: {this.state.times}</h2></div>
+
+
       </>
     )
   }

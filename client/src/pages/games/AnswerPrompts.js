@@ -37,7 +37,7 @@ export class AnswerPrompts extends React.Component{
      }
       if(this.state.time === 1){
         this.setState({timeOut:true})
-      } 
+      }
     });
 
   }
