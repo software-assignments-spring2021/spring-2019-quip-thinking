@@ -48,4 +48,4 @@ class Scoreboard extends React.Component {
   }
 }
 
-export default withRouter(Scoreboard);
+export default Scoreboard;
