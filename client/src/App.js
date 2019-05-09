@@ -47,9 +47,9 @@ const App = () => (
                 />}
           />
           <Route path = "/scoreboard/private" render={({
-            location: {state: {roomCode}}
+            location: {}
           }) => <Scoreboard
-                  roomCode={roomCode}
+
                 />}
           />
           <Route path = "/exit/private" component = {Exit}/>

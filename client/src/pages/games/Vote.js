@@ -17,7 +17,8 @@ class Vote extends React.Component {
       accumulator: 1,
       playerIds: [],
       times: 0,
-      voted: false
+      voted: false,
+
     }
 
 
@@ -25,16 +26,16 @@ class Vote extends React.Component {
     updateTimer(res=>{
       let {roomCode} = this.props
      let times = res.countdown;
-     console.log(times, 'yay');
      this.setState({times: times});
-     if(times === 1){
+     if(times === 10 ){
+      console.log("idiot");
 
-       this.props.history.push({
-         pathname: "/scoreboard/private",
-         state: {
-           roomCode
-         }
-       })
+     this.props.history.push({
+       pathname: "/scoreboard/private",
+       state: {
+         roomCode
+       }
+     })
 
      }
 
@@ -61,9 +62,6 @@ class Vote extends React.Component {
         accumulator: this.state.accumulator+1,
       })
     }
-    console.log(this.state.accumulator);
-    console.log(id);
-    console.log(this.props.roomCode);
     // sendVote(this.state.playerID, roomCode, this.state.chosenQuip);
     sendVote(id, this.props.roomCode);
   }
@@ -167,6 +165,7 @@ class Vote extends React.Component {
   // cut off connection with end-round
   componentWillUnmount() {
     socket.off('end-round')
+    socket.off('timer')
   }
 
   showPrompt(accumulator) {
