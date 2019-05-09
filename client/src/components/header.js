@@ -15,7 +15,7 @@ class Header extends React.Component {
 
   render() {
     const { history } = this.props;
-    return(
+    return (
       <>
         <Navbar fixed="top" style={{backgroundColor: '#00649b'}} expand="lg">
           <Navbar.Brand onClick={() => history.push('/')}>
@@ -37,7 +37,7 @@ class Header extends React.Component {
         <PublicModal show={this.state.publicModalShow} onHide={() => this.setState({ publicModalShow: false })}/>
         <AddModal show={this.state.addModalShow} onHide={() => this.setState({ addModalShow: false })}/>
       </>
-    )
+    );
   }
 }
 

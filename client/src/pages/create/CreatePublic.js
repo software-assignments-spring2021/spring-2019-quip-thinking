@@ -46,63 +46,61 @@ class CreatePublic extends React.Component {
 
   // call above methods when corresponding button is clicked
   render() {
-    return(
-  <>
-    <div className="createPublic">
-    <Header>
-    <div className="create">
-      <Form>
-        <h1> Still Waiting on Players... </h1>
-        <br />
-        <Row>
-          <Col>
-            <Form.Control placeholder={this.state.players[0]} />
-          </Col>
-          <Col>
-            <Form.Control placeholder={this.state.players[4]} />
-          </Col>
-        </Row>
+    return (
+      <>
+        <div className="createPublic">
+          <Header>
+            <div className="create">
+              <Form>
+                <h1> Still Waiting on Players... </h1>
+                <br />
+                <Row>
+                  <Col>
+                    <Form.Control placeholder={this.state.players[0]} />
+                  </Col>
+                  <Col>
+                    <Form.Control placeholder={this.state.players[4]} />
+                  </Col>
+                </Row>
 
-        <br />
-        <Row>
-          <Col>
-            <Form.Control placeholder={this.state.players[1]} />
-          </Col>
-          <Col>
-            <Form.Control placeholder={this.state.players[5]} />
-          </Col>
-        </Row>
+                <br />
+                <Row>
+                  <Col>
+                    <Form.Control placeholder={this.state.players[1]} />
+                  </Col>
+                  <Col>
+                    <Form.Control placeholder={this.state.players[5]} />
+                  </Col>
+                </Row>
 
-        <br />
-        <Row>
-          <Col>
-            <Form.Control placeholder={this.state.players[2]} />
-          </Col>
-          <Col>
-            <Form.Control placeholder={this.state.players[6]} />
-          </Col>
-        </Row>
+                <br />
+                <Row>
+                  <Col>
+                    <Form.Control placeholder={this.state.players[2]} />
+                  </Col>
+                  <Col>
+                    <Form.Control placeholder={this.state.players[6]} />
+                  </Col>
+                </Row>
 
-        <br />
-        <Row>
-          <Col>
-            <Form.Control placeholder={this.state.players[3]} />
-          </Col>
-          <Col>
-            <Form.Control placeholder={this.state.players[7]} />
-          </Col>
-        </Row>
+                <br />
+                <Row>
+                  <Col>
+                    <Form.Control placeholder={this.state.players[3]} />
+                  </Col>
+                  <Col>
+                    <Form.Control placeholder={this.state.players[7]} />
+                  </Col>
+                </Row>
 
-        <br/>
-        <Nav.Link href="#"><Button variant="primary" type="submit"> Start the Game! </Button></Nav.Link>
-      </Form>
-    </div>
-    </Header>
-
-    </div>
-  </>
-
-);
+                <br/>
+                <Nav.Link href="#"><Button variant="primary" type="submit"> Start the Game! </Button></Nav.Link>
+              </Form>
+            </div>
+          </Header>
+        </div>
+      </>
+    );
   }
 
 }

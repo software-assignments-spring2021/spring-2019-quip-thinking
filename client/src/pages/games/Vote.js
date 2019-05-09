@@ -15,7 +15,7 @@ class Vote extends React.Component {
       quip: [],
       finished: false,
       accumulator: 1,
-      voted: false
+      voted: false,
     }
   }
 
@@ -35,7 +35,7 @@ class Vote extends React.Component {
       // chosenQuip: this.state.idQuipArray[0][1],
       playerID: this.state.idQuipArray[0][0],
     });
-    this.castVote()
+    this.castVote();
   }
 
   // if user votes for the second quip
@@ -44,30 +44,30 @@ class Vote extends React.Component {
       // chosenQuip: this.state.idQuipArray[1][1],
       playerID: this.state.idQuipArray[1][0],
     });
-    this.castVote()
+    this.castVote();
   }
 
-  addAccumulator(){
-    let temp = this.state.accumlator+1;
+  addAccumulator() {
+    let temp = this.state.accumlator + 1;
     this.setState({
       accumulator: temp,
     });
   }
 
   // load the page with the prompts, first quip, and second quip
-  componentDidMount(){
+  componentDidMount() {
     // const roomCode = this.props.roomCode
-    const prompts = this.props.prompts
+    const prompts = this.props.prompts;
     // console.log(roomCode);
     // console.log(prompts);
 
     let promptArray = [];
     let quipArray = [];
-    for(var key in prompts){
+    for (var key in prompts) {
       console.log(key);
       promptArray.push(key);
-      for(var key2 in prompts[key]){
-        for(var key3 in prompts[key][key2])
+      for (var key2 in prompts[key]) {
+        for (var key3 in prompts[key][key2])
         quipArray.push(prompts[key][key2][key3]);
       }
     }
@@ -87,14 +87,14 @@ class Vote extends React.Component {
       });
     }
     //console.log(this.state.idQuipArray);
-    const{roomCode} = this.props
-    if(this.state.accumulator === this.state.prompts.length){
+    const { roomCode } = this.props;
+    if (this.state.accumulator === this.state.prompts.length) {
       this.props.history.push({
         pathname: "/scoreboard/private",
         state: {
-          roomCode
+          roomCode,
         }
-      })
+      });
     }
   }
 
@@ -103,8 +103,8 @@ class Vote extends React.Component {
     socket.off('end-round')
   }
 
-  showPrompt(accumulator){
-    return(
+  showPrompt(accumulator) {
+    return (
       <div>
         <h1>Vote for the funniest quip.</h1>
         <h1 id="showprompt">{this.state.prompts[accumulator-1]}</h1>
@@ -119,8 +119,9 @@ class Vote extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
+
   // call above methods when corresponding button is clicked
   render() {
     return(
@@ -129,7 +130,7 @@ class Vote extends React.Component {
           { this.state.finished ?  'Waiting for other players': this.showPrompt(this.state.accumulator)}
         </div>
       </>
-    )
+    );
   }
 }
 

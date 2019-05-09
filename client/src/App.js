@@ -57,8 +57,8 @@ const App = () => (
           <Route component={Error}/>
         </Switch>
       </Router>
-  </div>
-</>
+    </div>
+  </>
 );
 
 export default App;

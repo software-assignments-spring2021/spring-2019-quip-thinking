@@ -1,7 +1,7 @@
 import React from "react";
 import "./game.css";
-import {withRouter} from 'react-router-dom'
-import socket, { answerPrompt , startTimer, updateTimer, startVote, gotoVote} from '../../utils/api'
+import {withRouter} from 'react-router-dom';
+import socket, { answerPrompt , startTimer, updateTimer, startVote, gotoVote} from '../../utils/api';
 
 class AnswerPrompts extends React.Component {
   constructor(props) {
@@ -16,6 +16,7 @@ class AnswerPrompts extends React.Component {
       answerOne: '',
       answerTwo: '',
     };
+
     this.answersSent.bind(this);
     console.log(this.props.prompts);
 
@@ -27,9 +28,9 @@ class AnswerPrompts extends React.Component {
      if (times === 1) {
        startVote(this.props.round, this.props.roomCode);
      }
-      if (this.state.time === 1) {
-        this.setState({timeOut:true})
-      }
+     if (this.state.time === 1) {
+       this.setState({timeOut:true});
+     }
     });
 
   }
@@ -44,29 +45,29 @@ class AnswerPrompts extends React.Component {
 
   answerPrompt(e) {
     e.preventDefault();
-    answerPrompt(this.props.round, this.props.roomCode, this.state.answerOne, this.props.prompts[(this.props.round*2)-2]);
-    answerPrompt(this.props.round, this.props.roomCode, this.state.answerTwo, this.props.prompts[(this.props.round*2)-1]);
+    answerPrompt(this.props.round, this.props.roomCode, this.state.answerOne, this.props.prompts[(this.props.round * 2) - 2]);
+    answerPrompt(this.props.round, this.props.roomCode, this.state.answerTwo, this.props.prompts[(this.props.round * 2) - 1]);
     this.setState({finished: true});
   }
 
   showPrompt(number) {
-    return(
+    return (
       <div>
-        {this.props.prompts[(this.props.round*2)-2]}
+        {this.props.prompts[(this.props.round * 2) - 2]}
         <form onSubmit={this.answerPrompt.bind(this)}>
-        <input name="answer" type="text" onChange = {this.fieldoneChange.bind(this)}  />
-        {this.props.prompts[this.props.round*2-1]}
-        <input name="answer" type="text" onChange = {this.fieldtwoChange.bind(this)} />
+          <input name="answer" type="text" onChange = {this.fieldoneChange.bind(this)} />
+          {this.props.prompts[this.props.round * 2 - 1]}
+          <input name="answer" type="text" onChange = {this.fieldtwoChange.bind(this)} />
 
-       <button>Send data!</button>
-     </form>
+          <button>Send data!</button>
+        </form>
       </div>
     );
   }
 
   promptsFinished() {
     let prompts = this.props.prompts;
-    if(this.prompts.accumulator < prompts.length){
+    if(this.prompts.accumulator < prompts.length) {
       return true;
     }
     return false;
@@ -81,7 +82,7 @@ class AnswerPrompts extends React.Component {
     const { roomCode } = this.props;
 
     gotoVote(res => {
-      const {round, prompts} = res;
+      const { round, prompts } = res;
 
       this.props.history.push({
         pathname: "/vote/private",
@@ -90,15 +91,15 @@ class AnswerPrompts extends React.Component {
           round,
           prompts,
         }
-      })
-    })
+      });
+    });
   }
 
   componentWillUnmount() {
     socket.off('submit-answer');
   }
 
-  render(){
+  render() {
     return(
       <>
         <div className="create">
@@ -106,7 +107,7 @@ class AnswerPrompts extends React.Component {
           {this.state.finished ?  <p>Waiting for other players</p>: this.showPrompt(this.state.accumulator)}
         </div>
       </>
-    )
+    );
   }
 }
 

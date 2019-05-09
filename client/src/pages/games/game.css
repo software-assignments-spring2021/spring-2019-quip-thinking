@@ -16,9 +16,9 @@ h1 {
 
 #showprompt {
     font-size: 2em;
-    padding:20px;
+    padding: 20px;
     background-color: lightblue;
-    border-radius:25px;
+    border-radius: 25px;
     border: 5px dashed lightseagreen;
     text-align: center;
 }
@@ -30,11 +30,11 @@ h1 {
 }
 
 .quip {
-    padding:10px;
+    padding: 10px;
     background-color: bisque;
-    border:3px solid black;
-    border-radius:25px;
-    min-width:200px;
-    min-height:200px;
-    font-size:1.5em;
+    border: 3px solid black;
+    border-radius: 25px;
+    min-width: 200px;
+    min-height: 200px;
+    font-size: 1.5em;
 }

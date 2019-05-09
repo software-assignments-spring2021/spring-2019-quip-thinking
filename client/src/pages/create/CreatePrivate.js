@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
-import { createPrivateRoom } from '../../utils/api'
+import { createPrivateRoom } from '../../utils/api';
 import './create.css';
 
 class CreatePrivate extends React.Component{
@@ -13,15 +13,18 @@ class CreatePrivate extends React.Component{
     };
 
   }
+
   //STORES ROOM NAME AND PLAYER NAME IN STATE
   handleRoomChange(e) {
     this.setState({roomName: e.target.value});
   }
+
   handleNameChange(e) {
     this.setState({playerName: e.target.value});
   }
+
   submitForm () {
-    const { roomName, playerName } = this.state
+    const { roomName, playerName } = this.state;
     createPrivateRoom(roomName, playerName, (roomCode) => {
       this.props.history.push({
         pathname: '/waiting/private',
@@ -30,13 +33,13 @@ class CreatePrivate extends React.Component{
           roomName,
           roomCode,
         }
-      })
-    })
+      });
+    });
 
   }
 
   render() {
-    return(
+    return (
       <>
         <div className="create">
           <h1>Create a Private Room</h1>
