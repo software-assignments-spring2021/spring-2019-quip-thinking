@@ -10,33 +10,31 @@
     text-align: center;
 }
 
-#boxes {
+#boxes{
     display: flex;
     justify-content: space-around;
     width: 100%;
 }
 
 .carousel {
-    width: auto;
-    height: auto;
+    width:auto;
+    height:auto;
     margin: auto;
 }
 
-#box2 {
-    margin-left: 20px;
+#box2{
+    margin-left:20px;
     border: 2px dashed;
     padding: 5%;
-    border-radius: 25px;
+    border-radius:25px;
     background-color: lemonchiffon;
 }
 
-<<<<<<< HEAD
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1000px){
     #boxes{
         display: inline-block;
     }
-
-    #box2 {
+    #box2{
         width:auto;
     }
-}
+} 
