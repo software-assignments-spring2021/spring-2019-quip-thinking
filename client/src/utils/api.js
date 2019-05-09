@@ -1,10 +1,10 @@
 import io from 'socket.io-client';
 
-<<<<<<< HEAD
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000'
-=======
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:1337';
->>>>>>> 333021c5da4a0443491ed686e7a48d9b4f43c965
+
+
+
 const socket = io(API_URL);
 
 export const createPrivateRoom = (roomName, playerName, cb = () => {}) => {
@@ -98,10 +98,7 @@ export const gotoVote = ( cb = () => {}) => {
 
 export const updateTimer = ( cb = () => {}) => {
     socket.on('timer',msg => {
-<<<<<<< HEAD
-      //console.log(msg.countdown);
-=======
->>>>>>> 333021c5da4a0443491ed686e7a48d9b4f43c965
+
         cb(msg);
   })
 }
