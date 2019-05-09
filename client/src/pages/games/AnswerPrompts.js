@@ -1,11 +1,9 @@
 import React from "react";
-// import { Modal, Form, Button } from "react-bootstrap";
 import "./game.css";
-//import io from 'socket.io-client'
 import {withRouter} from 'react-router-dom'
 import socket, { answerPrompt , startTimer, updateTimer, startVote, gotoVote} from '../../utils/api'
 
-export class AnswerPrompts extends React.Component{
+class AnswerPrompts extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -16,10 +14,7 @@ export class AnswerPrompts extends React.Component{
       time: 400,
       finished: false,
       answerOne: '',
-      answerTwo: '',
-
-      round: 0,
-      roomCode: 0,
+      answerTwo: ''
     };
     this.answersSent.bind(this);
     console.log(this.props.prompts)
@@ -28,12 +23,9 @@ export class AnswerPrompts extends React.Component{
     updateTimer(res=>{
 
      let times = res.countdown;
-     console.log(times, 'yay');
      this.setState({time: times});
      if(times === 1){
-       console.log("timer hit 0");
-       console.log(this.roomCode);
-       startVote(this.state.round, this.state.roomCode);
+       startVote(this.props.round, this.props.roomCode);
      }
       if(this.state.time === 1){
         this.setState({timeOut:true})
@@ -60,10 +52,10 @@ export class AnswerPrompts extends React.Component{
   showPrompt(number){
     return(
       <div>
-        {this.props.prompts[(this.state.round*2)-2]}
+        {this.props.prompts[(this.props.round*2)-2]}
         <form onSubmit={this.answerPrompt.bind(this)}>
         <input name="answer" type="text" onChange = {this.fieldoneChange.bind(this)}  />
-        {this.props.prompts[this.state.round*2-1]}
+        {this.props.prompts[this.props.round*2-1]}
         <input name="answer" type="text" onChange = {this.fieldtwoChange.bind(this)} />
 
        <button>Send data!</button>
@@ -86,18 +78,11 @@ export class AnswerPrompts extends React.Component{
 
   componentDidMount(){
     startTimer();
+    const { roomCode } = this.props
 
-    this.setState({
-      round: this.props.round,
-      roomCode:this.props.roomCode,
-    })
     gotoVote(res => {
       const {round, prompts} = res
-      const roomCode=this.state.roomCode;
 
-      console.log("TRYING TO SEND TO NEXT PAGE")
-      console.log("ROOMCODE: ", roomCode)
-      console.log("ROUND: ", round)
       this.props.history.push({
         pathname: "/vote/private",
         state: {
@@ -107,7 +92,6 @@ export class AnswerPrompts extends React.Component{
         }
       })
     })
-
   }
 
   componentWillUnmount(){
@@ -119,7 +103,7 @@ export class AnswerPrompts extends React.Component{
       <>
         <div className="create">
           <h2>Time: {this.state.time}</h2>
-          <p>{this.state.finished ?  'Waiting for other players': this.showPrompt(this.state.accumulator)}</p>
+          {this.state.finished ?  <p>Waiting for other players</p>: this.showPrompt(this.state.accumulator)}
         </div>
       </>
     )

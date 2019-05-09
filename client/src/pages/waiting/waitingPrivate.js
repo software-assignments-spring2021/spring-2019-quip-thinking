@@ -1,76 +1,77 @@
 import React from 'react';
 import './waiting.css';
 // import "../games/Timer.js";
-import {Button} from 'react-bootstrap';
-import {withRouter} from 'react-router-dom'
-import socket, { getPlayers, getPrompts, subscribeToJoins, startGame } from '../../utils/api'
+import { Button } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
+import socket, { getPlayers, getPrompts, subscribeToJoins, startGame } from '../../utils/api';
 
-class WaitingPrivate extends React.Component{
+class WaitingPrivate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       players: [this.props.playerName],
       errorText: "",
       prompts: [],
-      round: 1
+      round: 1,
     }
     this.receivedPlayers.bind(this);
     subscribeToJoins((err, players) => {
       if (!err) {
-        this.receivedPlayers(players)
+        this.receivedPlayers(players);
       }
     })
     this.receivedPrompts.bind(this);
   }
-  
-  receivedPlayers(players){
-    this.setState({players: players})
+
+  receivedPlayers(players) {
+    this.setState({players: players});
   }
 
-  startPrivateGame(){
+  startPrivateGame() {
     const roomCode = this.props.roomCode;
     startGame(roomCode, res => {
     })
   }
 
-  receivedPrompts(prompts){
-    this.setState({prompts: prompts})
+  receivedPrompts(prompts) {
+    this.setState({prompts: prompts});
   }
+  
   // mount components
-  componentDidMount(){
-    const { roomCode } = this.props
+  componentDidMount() {
+    const { roomCode } = this.props;
     getPlayers(roomCode, (players) => {
-      this.receivedPlayers(players)
+      this.receivedPlayers(players);
     })
 
     getPrompts(this.props.roomCode, res => {
-      const {start, prompts} = res
-      const round=this.state.round;
+      const { start, prompts } = res;
+      const round = this.state.round;
       //if there are enough players and the code is correct, send to next page
-      if(start === "true"){
+      if (start === "true") {
         this.receivedPrompts(prompts);
         this.props.history.push({
           pathname: "/answer/private",
           state: {
             roomCode,
             prompts,
-            round
+            round,
           }
         })
-      }
-      else{
+      } else {
         this.setState({errorText: "You either don't have enough players or are sending an incorrect code. Please try again."});
       }
     })
   }
+
   //unmount components
-  componentWillUnmount(){
-    socket.off('join-private-room')
-    socket.off('start-game')
+  componentWillUnmount() {
+    socket.off('join-private-room');
+    socket.off('start-game');
   }
 
   render() {
-    const { players } = this.state
+    const { players } = this.state;
     return (
       <>
         <div id="waitingPrivate">
@@ -92,4 +93,4 @@ class WaitingPrivate extends React.Component{
   }
 }
 
-export default withRouter(WaitingPrivate)
+export default withRouter(WaitingPrivate);

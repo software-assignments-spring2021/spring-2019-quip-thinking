@@ -15,8 +15,10 @@ class Vote extends React.Component {
       quip: [],
       finished: false,
       accumulator: 1,
+
       playerIds: [],
       times: 0,
+      voted: false
     }
 
 
@@ -33,8 +35,9 @@ class Vote extends React.Component {
 
 
   // send vote to backend
-  castVote(id) {
 
+  castVote(id) {
+    const { roomCode } = this.props;
     console.log("CASTING MY VOTE");
     console.log("PLAYERID: ", this.state.playerID);
 
@@ -47,6 +50,7 @@ class Vote extends React.Component {
     // sendVote(this.state.playerID, roomCode, this.state.chosenQuip);
     sendVote(id, this.props.roomCode);
   }
+
 
   // if user votes for the first quip
   chooseQuip1() {
@@ -104,7 +108,7 @@ class Vote extends React.Component {
     // const roomCode = this.props.roomCode
     const prompts = this.props.prompts
     // console.log(roomCode);
-    console.log(prompts);
+    // console.log(prompts);
 
     let promptArray = [];
     let quipArray = [];
@@ -117,7 +121,7 @@ class Vote extends React.Component {
       }
     }
 
-    console.log("CURRENT PROMPT ARRY", promptArray);
+    console.log("CURRENT PROMPT ARRAY", promptArray);
     console.log(quipArray);
 
     this.setState({
@@ -131,7 +135,16 @@ class Vote extends React.Component {
         current: this.state.current + 1,
       });
     }
-    console.log(this.state.idQuipArray);
+    //console.log(this.state.idQuipArray);
+    const{roomCode} = this.props
+    if(this.state.accumulator === this.state.prompts.length){
+      this.props.history.push({
+        pathname: "/scoreboard/private",
+        state: {
+          roomCode
+        }
+      })
+    }
   }
 
   // cut off connection with end-round

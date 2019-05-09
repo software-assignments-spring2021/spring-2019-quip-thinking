@@ -26,7 +26,7 @@ class Home extends React.Component {
                     state: {
                         roomCode,
                         playerName,
-                        roomName
+                        roomName,
                     }
                 })
             }
