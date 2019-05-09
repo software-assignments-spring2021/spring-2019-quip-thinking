@@ -1,6 +1,6 @@
 import React from "react";
 import "./game.css";
-import socket, { sendVote, getInfo, updateTimer, startTimer } from '../../utils/api'
+import socket, { sendVote, getInfo, updateTimer, startTimer, endRound } from '../../utils/api'
 import { withRouter } from 'react-router-dom';
 
 class Vote extends React.Component {
@@ -24,12 +24,19 @@ class Vote extends React.Component {
 
 
     updateTimer(res=>{
-
+      let {roomCode} = this.props
      let times = res.countdown;
      console.log(times, 'yay');
      this.setState({times: times});
      if(times === 1){
-       startVote(this.props.round, this.props.roomCode);
+
+       this.props.history.push({
+         pathname: "/scoreboard/private",
+         state: {
+           roomCode
+         }
+       })
+
      }
 
     });

@@ -84,6 +84,10 @@ export const startVote = (round, roomCode, cb = () => {}) => {
   socket.emit('start-vote', {roomCode: roomCode, round: round});
 }
 
+export const endRound = (round, roomCode, cb = () => {}) => {
+  socket.emit('start-vote', {roomCode: roomCode, round: round});
+}
+
 export const endVote = ( cb = () => {}) => {
   socket.on('end-vote', msg => {
       cb(msg);
