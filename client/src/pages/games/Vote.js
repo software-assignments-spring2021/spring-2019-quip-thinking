@@ -28,8 +28,13 @@ class Vote extends React.Component {
      let times = res.countdown;
      console.log(times, 'yay');
      this.setState({times: times});
+     if(times === 1){
+       startVote(this.props.round, this.props.roomCode);
+     }
 
     });
+
+
   }
 
 
@@ -41,10 +46,16 @@ class Vote extends React.Component {
     console.log("CASTING MY VOTE");
     console.log("PLAYERID: ", this.state.playerID);
 
-    this.setState({
-      // chosenQuip: this.state.idQuipArray[0][1],
-      finished: true,
-    });
+    if(this.state.accumulator >= this.state.prompts.length){
+      this.setState({
+        finished: true,
+      })
+    }else{
+      this.setState({
+        accumulator: this.state.accumulator+1,
+      })
+    }
+    console.log(this.state.accumulator);
     console.log(id);
     console.log(this.props.roomCode);
     // sendVote(this.state.playerID, roomCode, this.state.chosenQuip);
@@ -55,7 +66,7 @@ class Vote extends React.Component {
   // if user votes for the first quip
   chooseQuip1() {
     console.log("hi hi ");
-
+    console.log('')
     let boom = this.state.prompts[this.state.accumulator-1]
     let vote = this.props.prompts;
     console.log('this is object keys');
