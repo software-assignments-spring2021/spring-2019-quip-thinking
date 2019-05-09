@@ -1,31 +1,13 @@
 import React from 'react';
 import './game.css';
 import { Alert, ListGroup } from 'react-bootstrap';
-import socket, { endVote, startTimer } from '../../utils/api';
-import Header from "../../components/header";
+
+// import socket, { endVote, startTimer } from '../../utils/api';
 import { withRouter } from 'react-router-dom';
 
-// add comparison function to sort in descending order
-function Compare(a, b) {
-   if (a[1] < b[1]) return 1;
-   if (a[1] > b[1]) return -1;
-   return 0;
-}
-
-// iterate through keys of the dictionary
-function SortScores(dictionary) {
-  for (var key in dictionary) {
-    const value = dictionary[key];
-    // allow array of arrays to be sorted by second index
-    this.state.scoresArray.push([key, value]);
-  }
-}
-
-// function to convert all other elements of the array into list format
-function Listify(value) {
-  this.setState({
-    text: this.state.text + "<ListGroup.Item>" + value[0] + '\t' + value[1] + "</ListGroup.Item>",
-  })
+const sortScores = (scores) => {
+  let scoreList = Object.keys(scores).map((key) => [key, scores[key]]);
+  return scoreList.sort((a,b) => a[1] <= b[1] ? 1 : -1);
 }
 
 class Scoreboard extends React.Component {
@@ -33,134 +15,37 @@ class Scoreboard extends React.Component {
     super(props);
     this.state = {
       round: 1,
-      scoresArray: [],
+
       containsTie: false,
       maxCount: 0,
       winners: "",
-      text: "",
+
     }
+    this.determineWinners.bind(this);
   }
 
-  componentDidMount() {
-    startTimer();
-    endVote(res => {
-      const { start, scores } = res;
-      if (start === "true") {
-        // run the function to alter scoresArray
-        SortScores(scores);
-        // scoresArray should now be sorted based on scores
-        this.setState({
-          scoresArray: this.state.scoresArray.sort(Compare),
-        });
-        // gets the highest value (the second value of the first array in scoresArray)
-        var maxVal = this.state.scoresArray[0][1];
-
-        for (var arr in this.state.scoresArray) {
-          if (arr[1] === maxVal) {
-            // increment maxCount for all occurences of the max
-            this.setState({
-              maxCount: this.state.maxCount + 1,
-            });
-          }
-        }
-
-        // if maxCount occurs multiple times then there are more than one max values
-        if (this.state.maxCount > 1) {
-          this.setState({
-            containsTie: true,
-          });
-        }
-
-        if (this.state.containsTie) {
-          // format differs based on the number of people tied at the top
-          if (this.state.maxCount === 2) {
-            this.setState({
-              winners: this.state.winners + this.state.scoresArray[0][0] + " and " + this.state.scoresArray[1][0],
-            });
-          } else {
-            var i;
-            for (i = 0; i < this.state.maxCount - 1; i++) {
-              this.setState({
-                winners: this.state.winners + this.state.scoresArray[i][0] + ', ',
-              });
-            }
-            // next line applies only for the final value to format the 'and'
-            this.setState({
-              winners: this.state.winners + 'and ' + this.state.scoresArray[this.state.maxCount - 1][0],
-            });
-          }
-
-        }
-
-        // begin text to be input into the JSX
-        this.setState({
-          text: "<ListGroup.Item> Name \t Score </ListGroup.Item>",
-        });
-
-        // call the aforementioned function
-        this.state.scoresArray.forEach(Listify);
-        // console.log(text)
-
-      } else {
-        this.setState({errorText: "Error. Please try again."});
-      }
-    })
-  }
-
-  //unmount components
-  componentWillUnmount() {
-    socket.off('end-vote');
+  determineWinners(scoreList){
+    let winners = [scoreList[0][0]];
+    let i = 1;
+    while (i < scoreList.length && scoreList[i][1] === scoreList[i-1][1]) {
+      winners.push(scoreList[i][0]);
+      i++;
+    }
+    return winners;
   }
 
   render() {
-    
-    var sb;
-    if (this.state.round === 1 || this.state.round === 2) {
-      sb = () => {
-        return (
-          <>
-            <Header>
-              <ListGroup>
-                {this.state.text}
-              </ListGroup>
-            </Header>
-          </>
-        );
-      }
-    } else {
-      if (this.state.containsTie) {
-        sb = () => {
-          return (
-            <>
-              <Header>
-                <ListGroup>
-                  {this.state.text}
-                </ListGroup>
-                <Alert variant="primary">
-                  Tie! The winners are {this.state.winners}
-                </Alert>
-              </Header>
-            </>
-          );
-        }
-      } else {
-        sb = () => {
-          return (
-            <>
-              <Header>
-                <ListGroup>
-                  {this.state.text}
-                </ListGroup>
-                <Alert variant="primary">
-                  The winner is {this.state.scoresArray[0][0]}
-                </Alert>
-              </Header>
-            </>
-          );
-        }
-      }
-    }
-    return sb;
+    const scores = this.props.scores || {"larry": 10, "becca": 1000, "ham": 20, "richie": 1, "jody": 1000};
+    const scoreList = sortScores(scores);
+    const winners = this.determineWinners(scoreList);
+    return (
+      <div className="create">
+        <Alert variant="success">{`The winner${winners.length > 1 ? 's' : ''} ${winners.length > 1 ? 'are' : 'is'}: ${winners.join(", ")} !`}</Alert>
+        <ListGroup>
+          {scoreList.map(([playerName, playerScore]) => <ListGroup.Item key={playerName}>{`${playerName}: ${playerScore}`}</ListGroup.Item>)}
+        </ListGroup>
+      </div>
+    );
   }
 }
 

@@ -193,11 +193,11 @@ class Vote extends React.Component {
         <h1>Vote for the funniest quip.</h1>
         <h1 id="showprompt">{this.state.prompts[accumulator-1]}</h1>
         <div id="quips">
-          <div id="firstquip" class="quip">
+          <div id="firstquip" className="quip">
             <p>{this.state.quip[this.state.accumulator*2-2]}</p>
             <button onClick={this.chooseQuip1.bind(this)}>Vote</button>
           </div>
-          <div id="secondquip" class="quip">
+          <div id="secondquip" className="quip">
             <p>{this.state.quip[this.state.accumulator*2-1]}</p>
             <button onClick={this.chooseQuip2.bind(this)}>Vote</button>
           </div>
