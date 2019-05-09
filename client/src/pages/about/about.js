@@ -4,7 +4,7 @@ import ImageCarousel from "../../components/ImageCarousel";
 
 export default class About extends React.Component {
     render() {
-      return(
+      return (
         <>
           <div id="about">
             <h1>What is Quip Thinking?</h1>

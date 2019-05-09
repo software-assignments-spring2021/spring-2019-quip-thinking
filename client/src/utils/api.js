@@ -21,7 +21,7 @@ export const joinPrivateRoom = (roomCode, playerName, cb = () => {}) => {
     socket.emit('join-private-room', {code: roomCode, name: playerName});
     socket.on('join-private-room', output => {
         cb(output);
-    })
+    });
 }
 
 export const addPrompt = (prompt, cb = () => {}) => {
@@ -32,13 +32,13 @@ export const getPlayers = (roomCode, cb = () => {}) => {
     socket.emit('get-players', { roomCode })
     socket.on('get-players', ({ players }) => {
         cb(players);
-    })
+    });
 }
 
 export const subscribeToJoins = (cb = () => {}) => {
     socket.on('join-private-room', ({players}) => {
         cb(null,players);
-    })
+    });
 }
 
 // export const sendVote = (id, code, quip,  cb = () => {}) => {
