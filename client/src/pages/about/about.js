@@ -2,8 +2,8 @@ import React from 'react';
 import './about.css';
 import ImageCarousel from "../../components/ImageCarousel";
 
-export default class About extends React.Component{
-    render(){
+export default class About extends React.Component {
+    render() {
       return(
         <>
           <div id="about">
@@ -27,7 +27,7 @@ export default class About extends React.Component{
             </div>
           </div>
         </>
-      )
+      );
     }
 }
 

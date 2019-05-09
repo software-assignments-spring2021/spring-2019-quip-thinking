@@ -5,7 +5,7 @@ import { createPrivateRoom } from '../../utils/api'
 import './create.css';
 
 class CreatePrivate extends React.Component{
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       roomName: "",
@@ -14,10 +14,10 @@ class CreatePrivate extends React.Component{
 
   }
   //STORES ROOM NAME AND PLAYER NAME IN STATE
-  handleRoomChange(e){
+  handleRoomChange(e) {
     this.setState({roomName: e.target.value});
   }
-  handleNameChange(e){
+  handleNameChange(e) {
     this.setState({playerName: e.target.value});
   }
   submitForm () {
@@ -28,14 +28,14 @@ class CreatePrivate extends React.Component{
         state: {
           playerName,
           roomName,
-          roomCode
+          roomCode,
         }
       })
     })
 
   }
 
-  render(){
+  render() {
     return(
       <>
         <div className="create">
@@ -55,4 +55,4 @@ class CreatePrivate extends React.Component{
   }
 }
 
-export default withRouter(CreatePrivate)
+export default withRouter(CreatePrivate);
