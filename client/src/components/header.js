@@ -7,13 +7,13 @@ import { withRouter } from "react-router-dom"
 import { PublicModal } from './PublicModal';
 import { AddModal } from './AddModal';
 
-class Header extends React.Component{
+class Header extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = { publicModalShow: false, addModalShow: false };
   }
 
-  render(){
+  render() {
     const { history } = this.props;
     return(
       <>

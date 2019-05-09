@@ -7,6 +7,6 @@ export default class Arrow extends React.Component{
             <>
             <div className="arrow"></div>
             </>
-        )
+        );
     }
 }
