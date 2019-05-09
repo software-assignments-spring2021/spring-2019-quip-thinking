@@ -33,7 +33,6 @@ export const getPlayers = (roomCode, cb = () => {}) => {
 
 export const subscribeToJoins = (cb = () => {}) => {
     socket.on('join-private-room', ({players}) => {
-        console.log("EVENT HEARD")
         cb(null,players)
     })
 }
@@ -78,7 +77,6 @@ export const startTimer = ( cb = () => {}) => {
 }
 
 export const startVote = (round, roomCode, cb = () => {}) => {
-  console.log("emitting start vote");
     socket.emit('start-vote', {roomCode: roomCode, round: round});
 
 }
@@ -91,7 +89,6 @@ export const gotoVote = ( cb = () => {}) => {
 
 export const updateTimer = ( cb = () => {}) => {
     socket.on('timer',msg => {
-      console.log(msg.countdown);
         cb(msg);
   })
 }
