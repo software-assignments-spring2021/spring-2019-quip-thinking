@@ -7,15 +7,15 @@ import { withRouter } from "react-router-dom"
 import { PublicModal } from './PublicModal';
 import { AddModal } from './AddModal';
 
-class Header extends React.Component{
+class Header extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = { publicModalShow: false, addModalShow: false };
   }
 
-  render(){
+  render() {
     const { history } = this.props;
-    return(
+    return (
       <>
         <Navbar fixed="top" style={{backgroundColor: '#00649b'}} expand="lg">
           <Navbar.Brand onClick={() => history.push('/')}>
@@ -37,7 +37,7 @@ class Header extends React.Component{
         <PublicModal show={this.state.publicModalShow} onHide={() => this.setState({ publicModalShow: false })}/>
         <AddModal show={this.state.addModalShow} onHide={() => this.setState({ addModalShow: false })}/>
       </>
-    )
+    );
   }
 }
 

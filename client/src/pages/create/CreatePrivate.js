@@ -1,11 +1,11 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
-import { createPrivateRoom } from '../../utils/api'
+import { createPrivateRoom } from '../../utils/api';
 import './create.css';
 
 class CreatePrivate extends React.Component{
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       roomName: "",
@@ -13,30 +13,33 @@ class CreatePrivate extends React.Component{
     };
 
   }
+
   //STORES ROOM NAME AND PLAYER NAME IN STATE
-  handleRoomChange(e){
+  handleRoomChange(e) {
     this.setState({roomName: e.target.value});
   }
-  handleNameChange(e){
+
+  handleNameChange(e) {
     this.setState({playerName: e.target.value});
   }
+
   submitForm () {
-    const { roomName, playerName } = this.state
+    const { roomName, playerName } = this.state;
     createPrivateRoom(roomName, playerName, (roomCode) => {
       this.props.history.push({
         pathname: '/waiting/private',
         state: {
           playerName,
           roomName,
-          roomCode
+          roomCode,
         }
-      })
-    })
+      });
+    });
 
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <>
         <div className="create">
           <h1>Create a Private Room</h1>
@@ -55,4 +58,4 @@ class CreatePrivate extends React.Component{
   }
 }
 
-export default withRouter(CreatePrivate)
+export default withRouter(CreatePrivate);

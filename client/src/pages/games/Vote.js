@@ -1,6 +1,6 @@
 import React from "react";
 import "./game.css";
-import socket, { sendVote, getInfo, updateTimer, startTimer } from '../../utils/api'
+import socket, { sendVote, getInfo, updateTimer, startTimer, endRound } from '../../utils/api'
 import { withRouter } from 'react-router-dom';
 
 class Vote extends React.Component {
@@ -15,7 +15,6 @@ class Vote extends React.Component {
       quip: [],
       finished: false,
       accumulator: 1,
-
       playerIds: [],
       times: 0,
       voted: false
@@ -24,12 +23,24 @@ class Vote extends React.Component {
 
 
     updateTimer(res=>{
-
+      let {roomCode} = this.props
      let times = res.countdown;
      console.log(times, 'yay');
      this.setState({times: times});
+     if(times === 1){
+
+       this.props.history.push({
+         pathname: "/scoreboard/private",
+         state: {
+           roomCode
+         }
+       })
+
+     }
 
     });
+
+
   }
 
 
@@ -41,10 +52,16 @@ class Vote extends React.Component {
     console.log("CASTING MY VOTE");
     console.log("PLAYERID: ", this.state.playerID);
 
-    this.setState({
-      // chosenQuip: this.state.idQuipArray[0][1],
-      finished: true,
-    });
+    if(this.state.accumulator >= this.state.prompts.length){
+      this.setState({
+        finished: true,
+      })
+    }else{
+      this.setState({
+        accumulator: this.state.accumulator+1,
+      })
+    }
+    console.log(this.state.accumulator);
     console.log(id);
     console.log(this.props.roomCode);
     // sendVote(this.state.playerID, roomCode, this.state.chosenQuip);
@@ -55,7 +72,7 @@ class Vote extends React.Component {
   // if user votes for the first quip
   chooseQuip1() {
     console.log("hi hi ");
-
+    console.log('')
     let boom = this.state.prompts[this.state.accumulator-1]
     let vote = this.props.prompts;
     console.log('this is object keys');
@@ -106,17 +123,17 @@ class Vote extends React.Component {
   componentDidMount(){
     startTimer();
     // const roomCode = this.props.roomCode
-    const prompts = this.props.prompts
+    const prompts = this.props.prompts;
     // console.log(roomCode);
     // console.log(prompts);
 
     let promptArray = [];
     let quipArray = [];
-    for(var key in prompts){
+    for (var key in prompts) {
       console.log(key);
       promptArray.push(key);
-      for(var key2 in prompts[key]){
-        for(var key3 in prompts[key][key2])
+      for (var key2 in prompts[key]) {
+        for (var key3 in prompts[key][key2])
         quipArray.push(prompts[key][key2][key3]);
       }
     }
@@ -136,14 +153,14 @@ class Vote extends React.Component {
       });
     }
     //console.log(this.state.idQuipArray);
-    const{roomCode} = this.props
-    if(this.state.accumulator === this.state.prompts.length){
+    const { roomCode } = this.props;
+    if (this.state.accumulator === this.state.prompts.length) {
       this.props.history.push({
         pathname: "/scoreboard/private",
         state: {
-          roomCode
+          roomCode,
         }
-      })
+      });
     }
   }
 
@@ -152,8 +169,8 @@ class Vote extends React.Component {
     socket.off('end-round')
   }
 
-  showPrompt(accumulator){
-    return(
+  showPrompt(accumulator) {
+    return (
       <div>
 
         <h1>Vote for the funniest quip.</h1>
@@ -169,8 +186,9 @@ class Vote extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
+
   // call above methods when corresponding button is clicked
   render() {
     return(
@@ -183,7 +201,7 @@ class Vote extends React.Component {
 
 
       </>
-    )
+    );
   }
 }
 

@@ -1,10 +1,10 @@
 import React from "react";
 import "./game.css";
-import {withRouter} from 'react-router-dom'
-import socket, { answerPrompt , startTimer, updateTimer, startVote, gotoVote} from '../../utils/api'
+import {withRouter} from 'react-router-dom';
+import socket, { answerPrompt , startTimer, updateTimer, startVote, gotoVote} from '../../utils/api';
 
-class AnswerPrompts extends React.Component{
-  constructor(props){
+class AnswerPrompts extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       players: [],
@@ -14,74 +14,75 @@ class AnswerPrompts extends React.Component{
       time: 400,
       finished: false,
       answerOne: '',
-      answerTwo: ''
+      answerTwo: '',
     };
+
     this.answersSent.bind(this);
-    console.log(this.props.prompts)
+    console.log(this.props.prompts);
 
 
-    updateTimer(res=>{
+    updateTimer(res => {
 
      let times = res.countdown;
      this.setState({time: times});
-     if(times === 1){
+     if (times === 1) {
        startVote(this.props.round, this.props.roomCode);
      }
-      if(this.state.time === 1){
-        this.setState({timeOut:true})
-      }
+     if (this.state.time === 1) {
+       this.setState({timeOut:true});
+     }
     });
 
   }
 
-  fieldoneChange(e){
+  fieldoneChange(e) {
     this.setState({answerOne: e.target.value});
   }
 
-  fieldtwoChange(e){
+  fieldtwoChange(e) {
     this.setState({answerTwo: e.target.value});
   }
 
-  answerPrompt(e){
+  answerPrompt(e) {
     e.preventDefault();
-    answerPrompt(this.props.round, this.props.roomCode, this.state.answerOne, this.props.prompts[(this.props.round*2)-2]);
-    answerPrompt(this.props.round, this.props.roomCode, this.state.answerTwo, this.props.prompts[(this.props.round*2)-1]);
+    answerPrompt(this.props.round, this.props.roomCode, this.state.answerOne, this.props.prompts[(this.props.round * 2) - 2]);
+    answerPrompt(this.props.round, this.props.roomCode, this.state.answerTwo, this.props.prompts[(this.props.round * 2) - 1]);
     this.setState({finished: true});
   }
 
-  showPrompt(number){
-    return(
+  showPrompt(number) {
+    return (
       <div>
-        {this.props.prompts[(this.props.round*2)-2]}
+        {this.props.prompts[(this.props.round * 2) - 2]}
         <form onSubmit={this.answerPrompt.bind(this)}>
-        <input name="answer" type="text" onChange = {this.fieldoneChange.bind(this)}  />
-        {this.props.prompts[this.props.round*2-1]}
-        <input name="answer" type="text" onChange = {this.fieldtwoChange.bind(this)} />
+          <input name="answer" type="text" onChange = {this.fieldoneChange.bind(this)} />
+          {this.props.prompts[this.props.round * 2 - 1]}
+          <input name="answer" type="text" onChange = {this.fieldtwoChange.bind(this)} />
 
-       <button>Send data!</button>
-     </form>
+          <button>Send data!</button>
+        </form>
       </div>
     );
   }
 
-  promptsFinished(){
+  promptsFinished() {
     let prompts = this.props.prompts;
-    if(this.prompts.accumulator < prompts.length){
+    if(this.prompts.accumulator < prompts.length) {
       return true;
     }
     return false;
   }
 
-  answersSent(){
+  answersSent() {
     this.setState({finished: true});
   }
 
-  componentDidMount(){
+  componentDidMount() {
     startTimer();
-    const { roomCode } = this.props
+    const { roomCode } = this.props;
 
     gotoVote(res => {
-      const {round, prompts} = res
+      const { round, prompts } = res;
 
       this.props.history.push({
         pathname: "/vote/private",
@@ -90,15 +91,15 @@ class AnswerPrompts extends React.Component{
           round,
           prompts,
         }
-      })
-    })
+      });
+    });
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     socket.off('submit-answer');
   }
 
-  render(){
+  render() {
     return(
       <>
         <div className="create">
@@ -106,7 +107,7 @@ class AnswerPrompts extends React.Component{
           {this.state.finished ?  <p>Waiting for other players</p>: this.showPrompt(this.state.accumulator)}
         </div>
       </>
-    )
+    );
   }
 }
 

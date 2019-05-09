@@ -5,7 +5,7 @@ import Header from "../../components/header";
 
 
 const JoinPublic = () => {
-  return(
+  return (
     <>
       <Header/>
 
@@ -53,7 +53,7 @@ const JoinPublic = () => {
 
     </>
 
-  )
+  );
 
 }
 

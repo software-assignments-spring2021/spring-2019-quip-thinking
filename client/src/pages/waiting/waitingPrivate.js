@@ -36,7 +36,7 @@ class WaitingPrivate extends React.Component {
   receivedPrompts(prompts) {
     this.setState({prompts: prompts});
   }
-  
+
   // mount components
   componentDidMount() {
     const { roomCode } = this.props;
@@ -89,7 +89,7 @@ class WaitingPrivate extends React.Component {
           <Button variant="primary" type="submit" onClick={this.startPrivateGame.bind(this)}>Start the Game!</Button>
         </div>
       </>
-    )
+    );
   }
 }
 

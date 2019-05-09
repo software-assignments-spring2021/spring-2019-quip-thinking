@@ -1,7 +1,7 @@
 import React from 'react';
 import './game.css';
 import { Alert, ListGroup } from 'react-bootstrap';
-import socket, { endVote } from '../../utils/api'
+import socket, { endVote } from '../../utils/api';
 import Header from "../../components/header";
 import { withRouter } from 'react-router-dom';
 
@@ -115,52 +115,46 @@ class Scoreboard extends React.Component {
     var sb;
     if (this.state.round === 1 || this.state.round === 2) {
       sb = () => {
-        return(
-      <>
-        <Header>
-          <ListGroup>
-            {this.state.text}
-          </ListGroup>
-        </Header>
-      </>
-
-        )
-
+        return (
+          <>
+            <Header>
+              <ListGroup>
+                {this.state.text}
+              </ListGroup>
+            </Header>
+          </>
+        );
       }
     } else {
       if (this.state.containsTie) {
         sb = () => {
-          return(
-        <>
-          <Header>
-            <ListGroup>
-              {this.state.text}
-            </ListGroup>
-            <Alert variant="primary">
-              Tie! The winners are {this.state.winners}
-            </Alert>
-          </Header>
-        </>
-
-          )
-
+          return (
+            <>
+              <Header>
+                <ListGroup>
+                  {this.state.text}
+                </ListGroup>
+                <Alert variant="primary">
+                  Tie! The winners are {this.state.winners}
+                </Alert>
+              </Header>
+            </>
+          );
         }
       } else {
         sb = () => {
-          return(
-        <>
-          <Header>
-            <ListGroup>
-              {this.state.text}
-            </ListGroup>
-            <Alert variant="primary">
-              The winner is {this.state.scoresArray[0][0]}
-            </Alert>
-          </Header>
-        </>
-
-          )
-
+          return (
+            <>
+              <Header>
+                <ListGroup>
+                  {this.state.text}
+                </ListGroup>
+                <Alert variant="primary">
+                  The winner is {this.state.scoresArray[0][0]}
+                </Alert>
+              </Header>
+            </>
+          );
         }
       }
     }
