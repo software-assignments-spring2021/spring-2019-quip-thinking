@@ -71,7 +71,7 @@ class Vote extends React.Component {
       }
     }
 
-    console.log("CURRENT PROMPT ARRY", promptArray);
+    console.log("CURRENT PROMPT ARRAY", promptArray);
     console.log(quipArray);
 
     this.setState({
