@@ -228,9 +228,6 @@ module.exports = function (io) {
 			const roomCode = msg.roomCode;
 			const playerId = msg.player;
 
-			console.log(playerId);
-			console.log(roomCode);
-
 			currentPrivateRooms[roomCode].updateScore(playerId);
 
 			const players = Array.from(new Set(Object.keys(currentPrivateRooms[roomCode].players)));
@@ -310,7 +307,7 @@ module.exports = function (io) {
 
 		socket.on('reset', function (data) {
 
-		    countdown = 20;
+		    countdown = 40;
 
 		    socket.emit('timer', { countdown: countdown });
 				//console.log('reset');

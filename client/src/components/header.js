@@ -7,15 +7,15 @@ import { withRouter } from "react-router-dom"
 import { PublicModal } from './PublicModal';
 import { AddModal } from './AddModal';
 
-class Header extends React.Component {
+class Header extends React.Component{
   constructor(props) {
-    super(props);
+    super(props)
     this.state = { publicModalShow: false, addModalShow: false };
   }
 
-  render() {
+  render(){
     const { history } = this.props;
-    return (
+    return(
       <>
         <Navbar fixed="top" style={{backgroundColor: '#00649b'}} expand="lg">
           <Navbar.Brand onClick={() => history.push('/')}>
@@ -29,7 +29,7 @@ class Header extends React.Component {
                 </Nav.Link>
                 <Nav.Link><Button style={{backgroundColor: '#26A69A'}} onClick={() => this.setState({ publicModalShow: true })}>Create a Public Room</Button></Nav.Link>
                 <Nav.Link><Button style={{backgroundColor: '#EF5350'}} onClick={() => this.setState({addModalShow: true})}>Add a Prompt</Button></Nav.Link>
-                <Nav.Link><Button style={{backgroundColor: '#BA68C8'}} onClick={() => history.push('/join/public')}>Join a Room</Button></Nav.Link> 
+                <Nav.Link><Button style={{backgroundColor: '#BA68C8'}} onClick={() => history.push('/join/public')}>Join a Room</Button></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -37,7 +37,7 @@ class Header extends React.Component {
         <PublicModal show={this.state.publicModalShow} onHide={() => this.setState({ publicModalShow: false })}/>
         <AddModal show={this.state.addModalShow} onHide={() => this.setState({ addModalShow: false })}/>
       </>
-    );
+    )
   }
 }
 

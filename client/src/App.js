@@ -47,10 +47,12 @@ const App = () => (
                 />}
           />
           <Route path = "/scoreboard/private" render={({
+
             location: {state: {roomCode, scores}}
           }) => <Scoreboard
                 roomCode={roomCode}
                 scores={scores}
+
 
                 />}
           />
@@ -59,8 +61,8 @@ const App = () => (
           <Route component={Error}/>
         </Switch>
       </Router>
-    </div>
-  </>
-);
+  </div>
+</>
+)
 
 export default App;
