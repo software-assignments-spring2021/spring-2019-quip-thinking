@@ -29,11 +29,11 @@ export class AddModal extends React.Component {
     const { message, clean } = this.state;
     let filter = new Filter();
     if (clean) {
-      addPrompt(filter.clean(message))
+      addPrompt(filter.clean(message));
     }
   }
   render() {
-    return(
+    return (
       <>
         <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
           <Modal.Header closeButton>
@@ -60,6 +60,6 @@ export class AddModal extends React.Component {
           </Modal.Footer>
         </Modal>
       </>
-    )
+    );
   }
 }
