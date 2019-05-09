@@ -15,12 +15,13 @@ class Vote extends React.Component {
       quip: [],
       finished: false,
       accumulator: 1,
+      voted: false
     }
   }
 
   // send vote to backend
   castVote() {
-    const { roomCode } = this.props.roomCode;
+    const { roomCode } = this.props;
     console.log("CASTING MY VOTE");
     console.log("PLAYERID: ", this.state.playerID);
     console.log("ROOM CODE: ", roomCode);
@@ -58,7 +59,7 @@ class Vote extends React.Component {
     // const roomCode = this.props.roomCode
     const prompts = this.props.prompts
     // console.log(roomCode);
-    console.log(prompts);
+    // console.log(prompts);
 
     let promptArray = [];
     let quipArray = [];
@@ -85,7 +86,16 @@ class Vote extends React.Component {
         current: this.state.current + 1,
       });
     }
-    console.log(this.state.idQuipArray);
+    //console.log(this.state.idQuipArray);
+    const{roomCode} = this.props
+    if(this.state.accumulator === this.state.prompts.length){
+      this.props.history.push({
+        pathname: "/scoreboard/private",
+        state: {
+          roomCode
+        }
+      })
+    }
   }
 
   // cut off connection with end-round
