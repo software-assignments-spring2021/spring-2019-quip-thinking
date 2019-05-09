@@ -1,10 +1,5 @@
 import io from 'socket.io-client';
-
-
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:1337'
-
-
-
 const socket = io(API_URL);
 
 export const createPrivateRoom = (roomName, playerName, cb = () => {}) => {
@@ -41,18 +36,8 @@ export const subscribeToJoins = (cb = () => {}) => {
     });
 }
 
-// export const sendVote = (id, code, quip,  cb = () => {}) => {
-//     socket.emit('end-vote', {id, code, quip});
-// }
-
 export const sendVote = (id, code,  cb = () => {}) => {
     socket.emit('end-vote', {player: id, roomCode: code});
-}
-
-export const getInfo = (roomCode, cb = () => {}) => {
-    socket.on('start-vote', ({prompts}) => {
-        cb(prompts);
-    })
 }
 
 export const startGame = (roomCode, cb = () => {}) => {
@@ -77,14 +62,9 @@ export const answersSuccessful = (cb = () => {}) => {
 
 export const startTimer = ( cb = () => {}) => {
     socket.emit('reset', {});
-
 }
 
 export const startVote = (round, roomCode, cb = () => {}) => {
-  socket.emit('start-vote', {roomCode: roomCode, round: round});
-}
-
-export const endRound = (round, roomCode, cb = () => {}) => {
   socket.emit('start-vote', {roomCode: roomCode, round: round});
 }
 
@@ -102,12 +82,8 @@ export const gotoVote = ( cb = () => {}) => {
 
 export const updateTimer = ( cb = () => {}) => {
     socket.on('timer',msg => {
-
         cb(msg);
   });
 }
-
-
-
 
 export default socket;
