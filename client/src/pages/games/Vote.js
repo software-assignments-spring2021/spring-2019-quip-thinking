@@ -8,10 +8,8 @@ class Vote extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 0,
       prompts: [],
       playerID: undefined,
-      chosenQuip: "",
       quip: [],
       finished: false,
       accumulator: 1,
@@ -25,15 +23,14 @@ class Vote extends React.Component {
     console.log("CASTING MY VOTE");
     console.log("PLAYERID: ", this.state.playerID);
     console.log("ROOM CODE: ", roomCode);
-    // sendVote(this.state.playerID, roomCode, this.state.chosenQuip);
     sendVote(this.state.playerID, roomCode);
   }
 
   // if user votes for the first quip
   chooseQuip1() {
     this.setState({
-      // chosenQuip: this.state.idQuipArray[0][1],
       playerID: this.state.idQuipArray[0][0],
+      voted: true
     });
     this.castVote()
   }
@@ -41,8 +38,8 @@ class Vote extends React.Component {
   // if user votes for the second quip
   chooseQuip2() {
     this.setState({
-      // chosenQuip: this.state.idQuipArray[1][1],
       playerID: this.state.idQuipArray[1][0],
+      voted: true
     });
     this.castVote()
   }
@@ -106,7 +103,7 @@ class Vote extends React.Component {
   showPrompt(accumulator){
     return(
       <div>
-        <h1>Vote for the funniest quip.</h1>
+        {this.state.voted ? <h1>{this.state.</h1>: <h1>Vote for the funniest quip.</h1>}
         <h1 id="showprompt">{this.state.prompts[accumulator-1]}</h1>
         <div id="quips">
           <div id="firstquip" class="quip">
