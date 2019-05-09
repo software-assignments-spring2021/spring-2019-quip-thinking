@@ -22,7 +22,7 @@ export default class ImageCarousel extends React.Component {
       const { index, direction } = this.state;
 
       return (
-        <Carousel activeIndex={index} direction={direction} onSelect={this.handleSelect} style={{width:"400px", height:"300px"}}>
+        <Carousel activeIndex={index} direction={direction} onSelect={this.handleSelect} style={{width:"700px", height:"500px"}}>
           <Carousel.Item>
             <img className="d-block w-100" src={require('./QT1.png')} alt="first slide"/>
           </Carousel.Item>
