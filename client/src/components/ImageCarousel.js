@@ -24,16 +24,16 @@ export default class ImageCarousel extends React.Component {
       return (
         <Carousel activeIndex={index} direction={direction} onSelect={this.handleSelect} style={{width:"400px", height:"300px"}}>
           <Carousel.Item>
-            <img className="d-block w-100" src={require('./QT1.jpg')} alt="first slide"/>
+            <img className="d-block w-100" src={require('./QT1.png')} alt="first slide"/>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={require('./QT2.jpg')} alt="second slide"/>
+            <img className="d-block w-100" src={require('./QT2.png')} alt="second slide"/>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={require('./QT3.jpg')} alt="third slide"/>
+            <img className="d-block w-100" src={require('./QT3.png')} alt="third slide"/>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={require('./QT4.jpg')} alt="fourth slide"/>
+            <img className="d-block w-100" src={require('./QT4.png')} alt="fourth slide"/>
           </Carousel.Item>
         </Carousel>
       );
