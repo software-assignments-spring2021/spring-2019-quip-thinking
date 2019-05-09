@@ -224,9 +224,12 @@ module.exports = function (io) {
 
 		socket.on('end-vote', function(msg, cb) {
 			cb = cb || function() {};
-
+			console.log('lol1')
 			const roomCode = msg.roomCode;
 			const playerId = msg.player;
+
+			console.log(playerId);
+			console.log(roomCode);
 
 			currentPrivateRooms[roomCode].updateScore(playerId);
 
