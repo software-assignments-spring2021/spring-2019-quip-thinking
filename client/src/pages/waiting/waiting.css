@@ -6,14 +6,14 @@
     width: 100%;
     height: 100vh;
     padding-left: 10%;
-    padding-right: 10%;
+    padding-right:10%;
 }
 
 #roomName{
     font-size: 4em;
-    padding: 20px;
+    padding:20px;
     background-color: lightblue;
-    border-radius: 25px;
+    border-radius:25px;
     border: 5px dashed lightseagreen;
     text-align: center;
 }

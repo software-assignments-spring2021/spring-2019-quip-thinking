@@ -224,12 +224,9 @@ module.exports = function (io) {
 
 		socket.on('end-vote', function(msg, cb) {
 			cb = cb || function() {};
-			console.log('lol1')
+
 			const roomCode = msg.roomCode;
 			const playerId = msg.player;
-
-			console.log(playerId);
-			console.log(roomCode);
 
 			currentPrivateRooms[roomCode].updateScore(playerId);
 
@@ -309,7 +306,7 @@ module.exports = function (io) {
 
 		socket.on('reset', function (data) {
 
-		    countdown = 20;
+		    countdown = 40;
 
 		    socket.emit('timer', { countdown: countdown });
 				//console.log('reset');
