@@ -88,7 +88,7 @@ class Vote extends React.Component {
     }
     //console.log(this.state.idQuipArray);
     const{roomCode} = this.props
-    if(accumulator === prompts.length){
+    if(this.state.accumulator === this.state.prompts.length){
       this.props.history.push({
         pathname: "/scoreboard/private",
         state: {
