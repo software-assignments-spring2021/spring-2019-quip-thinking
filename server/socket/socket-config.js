@@ -309,7 +309,7 @@ module.exports = function (io) {
 
 		socket.on('reset', function (data) {
 
-		    countdown = 40;
+		    countdown = 20;
 
 		    socket.emit('timer', { countdown: countdown });
 				//console.log('reset');
