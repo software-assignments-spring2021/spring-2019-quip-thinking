@@ -9,7 +9,7 @@ export class AddModal extends React.Component {
     super(props);
     this.state = {
       message: "",
-      clean: true
+      clean: true,
     };
   }
 
@@ -17,10 +17,10 @@ export class AddModal extends React.Component {
     this.setState({ message: e.target.value });
     let filter = new Filter();
     let prompt = this.state.message;
-    if(filter.isProfane(prompt)){
+    if (filter.isProfane(prompt)) {
       console.log("There are curse words in the prompt");
       this.setState({clean: false});
-    }else{
+    } else {
       this.setState({clean: true});
     }
   }

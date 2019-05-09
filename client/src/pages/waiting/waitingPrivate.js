@@ -36,7 +36,7 @@ class WaitingPrivate extends React.Component {
   receivedPrompts(prompts) {
     this.setState({prompts: prompts});
   }
-  
+
   // mount components
   componentDidMount() {
     const { roomCode } = this.props;

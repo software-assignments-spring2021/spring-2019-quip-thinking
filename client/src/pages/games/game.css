@@ -9,10 +9,12 @@
     padding-right: 3%;
     padding-bottom: 3%;
 }
-h1{
+
+h1 {
     margin: 20px;
 }
-#showprompt{
+
+#showprompt {
     font-size: 2em;
     padding:20px;
     background-color: lightblue;
@@ -20,12 +22,14 @@ h1{
     border: 5px dashed lightseagreen;
     text-align: center;
 }
-#quips{
+
+#quips {
     display: flex;
     justify-content: space-around;
     width: 100%;
 }
-.quip{
+
+.quip {
     padding:10px;
     background-color: bisque;
     border:3px solid black;

@@ -1,7 +1,7 @@
 import React from 'react';
 import './game.css';
 import { Alert, ListGroup } from 'react-bootstrap';
-import socket, { endVote } from '../../utils/api'
+import socket, { endVote } from '../../utils/api';
 import Header from "../../components/header";
 import { withRouter } from 'react-router-dom';
 
@@ -124,7 +124,7 @@ class Scoreboard extends React.Component {
         </Header>
       </>
 
-        )
+    );
 
       }
     } else {
@@ -142,7 +142,7 @@ class Scoreboard extends React.Component {
           </Header>
         </>
 
-          )
+      );
 
         }
       } else {
@@ -159,7 +159,7 @@ class Scoreboard extends React.Component {
           </Header>
         </>
 
-          )
+      );
 
         }
       }

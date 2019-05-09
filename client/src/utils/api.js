@@ -10,15 +10,15 @@ const socket = io(API_URL);
 export const createPrivateRoom = (roomName, playerName, cb = () => {}) => {
     socket.emit('create-private-room', {
         playerName,
-        roomName
-    })
+        roomName,
+    });
     socket.on('create-private-room', (res) => {
         cb(res.roomCode);
-    })
+    });
 }
 
 export const joinPrivateRoom = (roomCode, playerName, cb = () => {}) => {
-    socket.emit('join-private-room', {code: roomCode, name: playerName})
+    socket.emit('join-private-room', {code: roomCode, name: playerName});
     socket.on('join-private-room', output => {
         cb(output);
     })
@@ -37,7 +37,7 @@ export const getPlayers = (roomCode, cb = () => {}) => {
 
 export const subscribeToJoins = (cb = () => {}) => {
     socket.on('join-private-room', ({players}) => {
-        cb(null,players)
+        cb(null,players);
     })
 }
 
@@ -62,7 +62,7 @@ export const startGame = (roomCode, cb = () => {}) => {
 export const getPrompts = (roomCode, cb = () => {}) => {
     socket.on('start-game', msg => {
         cb(msg);
-    })
+    });
 }
 
 export const answerPrompt = ( round, roomCode, answer, prompt, cb = () => {}) => {
@@ -87,20 +87,20 @@ export const startVote = (round, roomCode, cb = () => {}) => {
 export const endVote = ( cb = () => {}) => {
   socket.on('end-vote', msg => {
       cb(msg);
-  })
+  });
 }
 
 export const gotoVote = ( cb = () => {}) => {
     socket.on('start-vote', msg => {
         cb(msg);
-    })
+    });
 }
 
 export const updateTimer = ( cb = () => {}) => {
     socket.on('timer',msg => {
 
         cb(msg);
-  })
+  });
 }
 
 export default socket;

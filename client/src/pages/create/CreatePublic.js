@@ -10,25 +10,25 @@ class CreatePublic extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: []
+      players: [],
     }
 
     this.receivedPlayers.bind(this);
     subscribeToJoins((err, players) => {
       if (!err) {
-        this.receivedPlayers(players)
+        this.receivedPlayers(players);
       }
     })
   }
 
-  receivedPlayers(players){
-    this.setState({players})
+  receivedPlayers(players) {
+    this.setState({players});
   }
 
-  componentDidMount(){
-    const { roomCode } = this.props
+  componentDidMount() {
+    const { roomCode } = this.props;
     getPlayers(roomCode, (players) => {
-      this.receivedPlayers(players)
+      this.receivedPlayers(players);
     })
 
     if (this.state.players.length < 8) {
@@ -40,9 +40,8 @@ class CreatePublic extends React.Component {
   }
 
 
-  componentWillUnmount(){
-    socket.off('join-private-room')
-
+  componentWillUnmount() {
+    socket.off('join-private-room');
   }
 
   // call above methods when corresponding button is clicked
@@ -103,7 +102,7 @@ class CreatePublic extends React.Component {
     </div>
   </>
 
-    )
+);
   }
 
 }
