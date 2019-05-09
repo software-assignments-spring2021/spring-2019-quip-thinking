@@ -113,6 +113,7 @@ class Scoreboard extends React.Component {
   }
 
   render() {
+    
     var sb;
     if (this.state.round === 1 || this.state.round === 2) {
       sb = () => {

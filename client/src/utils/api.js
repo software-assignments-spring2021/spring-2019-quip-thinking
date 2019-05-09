@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000'
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:1337'
 
 
 
@@ -106,5 +106,8 @@ export const updateTimer = ( cb = () => {}) => {
         cb(msg);
   });
 }
+
+
+
 
 export default socket;

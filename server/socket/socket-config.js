@@ -224,7 +224,7 @@ module.exports = function (io) {
 
 		socket.on('end-vote', function(msg, cb) {
 			cb = cb || function() {};
-			console.log('lol1')
+
 			const roomCode = msg.roomCode;
 			const playerId = msg.player;
 
@@ -254,6 +254,7 @@ module.exports = function (io) {
 			for (let i = 0; i < players.length; i++) {
 				io.to(players[i]).emit('end-vote', { start: 'true', scores: scores});
 			}
+			console.log(scores);
 
 			cb(null, 'Done');
 		});

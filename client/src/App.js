@@ -47,8 +47,10 @@ const App = () => (
                 />}
           />
           <Route path = "/scoreboard/private" render={({
-            location: {}
+            location: {state: {roomCode, scores}}
           }) => <Scoreboard
+                roomCode={roomCode}
+                scores={scores}
 
                 />}
           />

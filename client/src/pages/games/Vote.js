@@ -1,6 +1,6 @@
 import React from "react";
 import "./game.css";
-import socket, { sendVote, getInfo, updateTimer, startTimer, endRound } from '../../utils/api'
+import socket, { sendVote, getInfo, updateTimer, startTimer, endRound, endVote } from '../../utils/api'
 import { withRouter } from 'react-router-dom';
 
 class Vote extends React.Component {
@@ -18,22 +18,26 @@ class Vote extends React.Component {
       playerIds: [],
       times: 0,
       voted: false,
+      score: {},
 
     }
 
 
 
     updateTimer(res=>{
-      let {roomCode} = this.props
+    let {roomCode} = this.props
      let times = res.countdown;
+     let scores = this.state.score;
      this.setState({times: times});
      if(times === 10 ){
-      console.log("idiot");
+      console.log("this is scores");
+      console.log(roomCode);
 
      this.props.history.push({
        pathname: "/scoreboard/private",
        state: {
-         roomCode
+         roomCode,
+         scores,
        }
      })
 
@@ -142,6 +146,20 @@ class Vote extends React.Component {
     this.setState({
       prompts: promptArray,
       quip: quipArray,
+    });
+
+
+
+    endVote(res => {
+      const scores = res.scores;
+      console.log('listening for end vote');
+      console.log(scores);
+      this.setState({
+        score: scores,
+      })
+
+
+
     });
 
     for (var [key1, key2] in promptArray[this.state.current]) {
