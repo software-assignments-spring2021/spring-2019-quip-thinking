@@ -4,9 +4,10 @@
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     padding-left: 10%;
     padding-right: 10%;
+    margin-bottom: 30px;
     text-align: center;
 }
 
@@ -30,7 +31,6 @@
     background-color: lemonchiffon;
 }
 
-<<<<<<< HEAD
 @media screen and (max-width: 1200px){
     #boxes{
         display: inline-block;
