@@ -33,10 +33,6 @@
 <<<<<<< HEAD
 @media screen and (max-width: 1200px){
     #boxes{
-=======
-@media screen and (max-width: 1000px) {
-    #boxes {
->>>>>>> b92d5c7df164f8465e9f179c949527f91b9a49fd
         display: inline-block;
     }
 
