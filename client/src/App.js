@@ -46,17 +46,11 @@ const App = () => (
                   prompts={prompts}
                 />}
           />
-          <Route path = "/scoreboard/private" render={({
-
-            location: {state: {roomCode, scores}}
-          }) => <Scoreboard
-                roomCode={roomCode}
-                scores={scores}
 
 
-                />}
-          />
-          <Route path = "/exit/private" component = {Exit}/>
+          <Route path = "/scoreboard/private" render={({location: {state: { scores }}}) => <Scoreboard scores={scores}/>}/>
+          <Route path = "/exit/private" component={Exit}/>
+
           <Route path = "/join/public" component={JoinPublic}/>
           <Route component={Error}/>
         </Switch>
