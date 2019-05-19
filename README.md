@@ -16,12 +16,36 @@ You can read our project requirements <a href="REQUIREMENTS.md">here</a>.
 Do you want to contribute to this project? Please read <a href="CONTRIBUTING.md">these</a> guidelines first.
 
 ## Installation
+1. Clone our project: `git clone https://github.com/nyu-software-engineering/quip-thinking.git`!
+2. Client instructions
+    - Go into the client folder (`cd client`)
+    - Install dependencies (`npm install`)
+3. Server instructions
+    - Go into the server folder (`cd server`)
+    - Install dependencies (`npm install`)
+    - Set up your MongoDB database
+        - Install MongoDB
+        - Open a new terminal instance and type `mongodb`
+        - Create the quip database by typing `use quip`
+    - Create a .env file in the root of `server/` with the following information:  
+    ``` 
+    DB_URL_DEV=mongodb://localhost:27017/quip 
+    PORT_DEV=1337
+    NODE_ENV=DEV
 
-Clone our project: `git clone https://github.com/nyu-software-engineering/quip-thinking.git`!
+    DB_URL_TEST=mongodb://localhost:27017/quiptest
+    PORT_TEST=8889
+    ```
+    - Get the [prompts](https://github.com/nyu-software-engineering/quip-thinking/blob/master/prompts/prompts.csv) into your database by running the command `npm run updateDB`.
 
-Start the server in `server` directory with `npm start`.
+## Running & Testing
+### Running
+Start the server in `server` directory with `npm run sock`.
 
 Start the client in `client` directory with `npm start` in a different terminal or command-line instance.
+
+### Testing
+Run tests for server with `npm run sockTest` in the `server` directory.
 
 Run tests for client with `npm test` in the `client` directory.
 
