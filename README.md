@@ -26,7 +26,7 @@ Do you want to contribute to this project? Please read <a href="CONTRIBUTING.md"
     - Set up your MongoDB database
         - Install MongoDB
         - Open a new terminal instance and type `mongod`
-        - Create the quip database by opening up a new terminal instance and typing 'mongo' then 'use quip'
+        - Create the quip database by opening up a new terminal instance and typing `mongo` then `use quip`
     - Create a .env file in the root of `server/` with the following information:  
     ``` 
     DB_URL_DEV=mongodb://localhost:27017/quip 
